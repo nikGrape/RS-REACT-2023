@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-export default class Mane extends Component {
+export default class Main extends Component {
   render() {
     return (
       <Fragment>
