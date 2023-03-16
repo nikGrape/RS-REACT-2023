@@ -26,7 +26,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -68,8 +68,11 @@ button:focus-visible {
   }
 }
 
+/** HEADER */
+
 #app-header {
   width: 90vw;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -82,14 +85,65 @@ button:focus-visible {
 }
 
 #links {
-  margin-right: 50px;
+  /* margin-right: 50px; */
   display: flex;
   justify-content: space-between;
-  width: 10%;
   /* border: 1px solid black; */
   font-size: large;
 }
 
 #links a {
   margin: 10px;
+}
+
+/** PAGE */
+
+.page {
+  position: relative;
+  top: 10vh;
+  width: 90vw;
+  margin-left: 5vw;
+  /* background-color: antiquewhite; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/** SEARCH BAR  */
+
+#search-bar {
+  display: flex;
+  /* justify-self: flex-end; */
+  align-self: flex-end;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px dashed #213547;
+  border-radius: 20px;
+  width: 250px;
+  height: 40px;
+  font-size: large;
+  background-color: inherit;
+  color: inherit;
+  padding-left: 10px;
+}
+
+#search-input {
+  border-radius: 20px;
+  border: transparent;
+  user-select: none;
+  outline: none;
+  background-color: inherit;
+  color: inherit;
+  font-weight: 600;
+  height: 100%;
+  width: 80%;
+  text-align: left;
+  padding: 0px 5px 0px 5px;
+  font-size: inherit;
+}
+
+div {
+  /* border: 1px solid black; */
+  position: relative;
 }
