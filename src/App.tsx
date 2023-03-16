@@ -1,14 +1,35 @@
 import './App.css';
-import React from 'react';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Mane from './pages/Mane';
+import Page404 from './pages/Page404';
+import About from './pages/About';
+import Header from './components/Header';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>RS School 2023</h1>
-      </div>
+      <Fragment>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Mane />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </Fragment>
     );
   }
 }
 
-export default App;
+class AppWrapper extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+  }
+}
+
+export default AppWrapper;
