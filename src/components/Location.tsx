@@ -8,9 +8,9 @@ export const Location = () => {
   const adjustLocation = (location: string) => {
     switch (location) {
       case '/':
-        return 'main';
+        return 'Main';
       case '/about':
-        return 'about';
+        return 'About Us';
       default:
         return '404';
     }
@@ -18,7 +18,7 @@ export const Location = () => {
 
   return (
     <div>
-      <h1>{adjustLocation(location.pathname)}</h1>
+      <h1 id="location">{adjustLocation(location.pathname)}</h1>
     </div>
   );
 };

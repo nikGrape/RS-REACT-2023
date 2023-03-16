@@ -7,9 +7,10 @@ export default class Header extends Component {
     return (
       <div id="app-header">
         <Location />
-        <Link to="/">Main</Link>
-        <Link to="/about">About</Link>
-        <Link to="/404">404</Link>
+        <div id="links">
+          <Link to="/">Main</Link>
+          <Link to="/about">About</Link>
+        </div>
       </div>
     );
   }

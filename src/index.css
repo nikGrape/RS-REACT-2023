@@ -67,3 +67,29 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#app-header {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin-left: 5vw;
+}
+
+#links {
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  /* border: 1px solid black; */
+  font-size: large;
+}
+
+#links a {
+  margin: 10px;
+}
