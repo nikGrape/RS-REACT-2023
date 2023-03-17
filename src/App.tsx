@@ -6,22 +6,38 @@ import Page404 from './pages/Page404';
 import About from './pages/About';
 import Header from './components/Header';
 
-class App extends React.Component {
+export class App extends React.Component<object, { location: string }> {
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      location: 'Main',
+    };
+
+    this.updateLocation = this.updateLocation.bind(this);
+  }
+
+  updateLocation(location: string): void {
+    this.setState((state) => ({
+      ...state,
+      location,
+    }));
+  }
+
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header location={this.state.location} />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<Main updateLocation={this.updateLocation} />} />
+          <Route path="/about" element={<About updateLocation={this.updateLocation} />} />
+          <Route path="*" element={<Page404 updateLocation={this.updateLocation} />} />
         </Routes>
       </Fragment>
     );
   }
 }
 
-class AppWrapper extends React.Component {
+export class AppWrapper extends React.Component {
   render() {
     return (
       <BrowserRouter>
@@ -30,5 +46,3 @@ class AppWrapper extends React.Component {
     );
   }
 }
-
-export default AppWrapper;

@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Location } from './Location';
 
-export default class Header extends Component {
+export default class Header extends Component<{ location: string }, object> {
+  constructor(props: { location: string }) {
+    super(props);
+  }
   render() {
-    return (
+    return this.props.location !== '404' ? (
       <div id="app-header">
-        <Location />
+        <h1>{this.props.location}</h1>
         <div id="links">
           <Link to="/">Main</Link>
           <Link to="/about">About</Link>
         </div>
       </div>
+    ) : (
+      <div />
     );
   }
 }
