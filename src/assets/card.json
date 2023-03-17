@@ -1,0 +1,68 @@
+{
+  "cards": [
+    {
+      "icon": "../../public/react.svg",
+      "title": "REACT",
+      "desc": "The library for web and native user interfaces",
+      "link": "https://react.dev/",
+      "likes": 100,
+      "views": 5
+    },
+    {
+      "icon": "../../public/vite.svg",
+      "title": "VITE",
+      "desc": "Next Generation Frontend Tooling",
+      "link": "https://vitejs.dev/",
+      "likes": 50,
+      "views": 2
+    },
+    {
+      "icon": "../../public/mui.svg",
+      "title": "MUI",
+      "desc": "Move faster with intuitive React UI tools",
+      "link": "https://mui.com/",
+      "likes": 33,
+      "views": 2
+    },
+    {
+      "icon": "../../public/stitches.svg",
+      "title": "Stitches",
+      "desc": "CSS-in-JS with near-zero runtime",
+      "link": "https://stitches.dev/",
+      "likes": 72,
+      "views": 220
+    },
+    {
+      "icon": "../../public/gatsby.svg",
+      "title": "Gatsby",
+      "desc": "React-based open source framework with performance, scalability and security built-in",
+      "link": "https://www.gatsbyjs.com/",
+      "likes": 104,
+      "views": 29
+    },
+    {
+      "icon": "../../public/next.svg",
+      "title": "NEXT",
+      "desc": "Next.js is a React framework that gives you building blocks to create web applications.",
+      "link": "https://nextjs.org/",
+      "likes": 77,
+      "views": 19
+    },
+    {
+      "icon": "../../public/formic.svg",
+      "title": "Fomric",
+      "desc": "Formik is the world's most popular open source form library for React and React Native.",
+      "link": "https://formik.org/",
+      "likes": 141,
+      "views": 202
+    },
+    {
+      "icon": "../../public/tailwidncss.svg",
+      "title": "Tailwindcss",
+      "desc": "Rapidly build modern websites without ever leaving your HTML.",
+      "link": "https://tailwindcss.com/",
+      "likes": 34,
+      "views": 11
+    }
+  ]
+}

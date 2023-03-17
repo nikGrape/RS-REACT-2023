@@ -12,6 +12,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --cards-color: #353535;
 }
 
 a {
@@ -21,6 +23,15 @@ a {
 }
 a:hover {
   color: #535bf2;
+  transform: scale(1.08);
+  transition: all 600ms ease-in-out;
+}
+
+#react-svg:hover,
+#next-svg:hover,
+#stitches-svg:hover {
+  transform: rotate(360deg);
+  transition: all 600ms ease-in-out;
 }
 
 body {
@@ -58,7 +69,8 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: whitesmoke;
+    --cards-color: white;
   }
   a:hover {
     color: #747bff;
@@ -110,6 +122,10 @@ button:focus-visible {
   align-items: center;
 }
 
+#page-not-found {
+  font-size: xx-large;
+}
+
 /** SEARCH BAR  */
 
 #search-bar {
@@ -146,4 +162,78 @@ button:focus-visible {
 div {
   /* border: 1px solid black; */
   position: relative;
+}
+
+/** CARD  */
+
+.cards {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  margin-bottom: 50px;
+  /* background-color: whitesmoke; */
+}
+
+.card {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
+  width: 90%;
+  height: 300px;
+  background-color: var(--cards-color);
+  text-align: center;
+  padding: 5px;
+  /* overflow: hidden; */
+  /* border: 1px solid black; */
+}
+
+.card a {
+  height: 40%;
+  justify-self: flex-start;
+  /* align-self: flex-start; */
+}
+.card-icon {
+  height: 100%;
+}
+
+.card p,
+h4,
+span {
+  /* border: 1px solid black; */
+  margin: 0px;
+}
+
+.card div {
+  margin: 0px;
+}
+
+.card span {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: larger;
+  color: gray;
+  margin-top: 10px;
+}
+
+.card-likes {
+  user-select: none;
+  width: 23%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.card-likes:hover {
+  color: rgba(73, 73, 192, 0.993);
+}
+.card-views {
+  user-select: none;
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
