@@ -9,8 +9,16 @@ export default class About extends Component<{
   }
   render() {
     return (
-      <div className="page">
-        <h2>WEEK ONE OF RS-REACT BOOT CAMP</h2>
+      <div className="page" id="about">
+        <h2>This site contains many useful resources and frameworks for web development</h2>
+        <p>
+          This resource was created as an assignment for the first week of
+          <a href="https://www.rs.school/" target="_blank" rel="noreferrer">
+            {' '}
+            RS-SCHOOL{' '}
+          </a>
+          React boot camp 2023
+        </p>
       </div>
     );
   }
