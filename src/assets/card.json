@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "icon": "../../public/react.svg",
+      "icon": "react.svg",
       "title": "REACT",
       "desc": "The library for web and native user interfaces",
       "link": "https://react.dev/",
@@ -9,7 +9,7 @@
       "views": 5
     },
     {
-      "icon": "../../public/vite.svg",
+      "icon": "vite.svg",
       "title": "VITE",
       "desc": "Next Generation Frontend Tooling",
       "link": "https://vitejs.dev/",
@@ -17,7 +17,7 @@
       "views": 2
     },
     {
-      "icon": "../../public/mui.svg",
+      "icon": "mui.svg",
       "title": "MUI",
       "desc": "Move faster with intuitive React UI tools",
       "link": "https://mui.com/",
@@ -25,7 +25,7 @@
       "views": 2
     },
     {
-      "icon": "../../public/stitches.svg",
+      "icon": "stitches.svg",
       "title": "Stitches",
       "desc": "CSS-in-JS with near-zero runtime",
       "link": "https://stitches.dev/",
@@ -33,7 +33,7 @@
       "views": 220
     },
     {
-      "icon": "../../public/gatsby.svg",
+      "icon": "gatsby.svg",
       "title": "Gatsby",
       "desc": "React-based open source framework with performance, scalability and security built-in",
       "link": "https://www.gatsbyjs.com/",
@@ -41,7 +41,7 @@
       "views": 29
     },
     {
-      "icon": "../../public/next.svg",
+      "icon": "next.svg",
       "title": "NEXT",
       "desc": "Next.js is a React framework that gives you building blocks to create web applications.",
       "link": "https://nextjs.org/",
@@ -49,7 +49,7 @@
       "views": 19
     },
     {
-      "icon": "../../public/formic.svg",
+      "icon": "formic.svg",
       "title": "Fomric",
       "desc": "Formik is the world's most popular open source form library for React and React Native.",
       "link": "https://formik.org/",
@@ -57,7 +57,7 @@
       "views": 202
     },
     {
-      "icon": "../../public/tailwidncss.svg",
+      "icon": "tailwidncss.svg",
       "title": "Tailwindcss",
       "desc": "Rapidly build modern websites without ever leaving your HTML.",
       "link": "https://tailwindcss.com/",

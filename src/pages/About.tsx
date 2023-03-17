@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-export default class About extends Component<{ updateLocation: (location: string) => void }> {
-  constructor(props: { updateLocation: (location: string) => void }) {
+export default class About extends Component<{
+  updateLocation: (location: string, topic: string) => void;
+}> {
+  constructor(props: { updateLocation: (location: string, topic: string) => void }) {
     super(props);
-    props.updateLocation('About Us');
+    props.updateLocation('About Us', "That's what it's all about");
   }
   render() {
     return (

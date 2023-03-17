@@ -6,27 +6,29 @@ import Page404 from './pages/Page404';
 import About from './pages/About';
 import Header from './components/Header';
 
-export class App extends React.Component<object, { location: string }> {
+export class App extends React.Component<object, { location: string; topic: string }> {
   constructor(props: object) {
     super(props);
     this.state = {
       location: 'Main',
+      topic: '',
     };
 
     this.updateLocation = this.updateLocation.bind(this);
   }
 
-  updateLocation(location: string): void {
+  updateLocation(location: string, topic?: string): void {
     this.setState((state) => ({
       ...state,
       location,
+      topic: topic ? topic : state.topic,
     }));
   }
 
   render() {
     return (
       <Fragment>
-        <Header location={this.state.location} />
+        <Header location={this.state.location} topic={this.state.topic} />
         <Routes>
           <Route path="/" element={<Main updateLocation={this.updateLocation} />} />
           <Route path="/about" element={<About updateLocation={this.updateLocation} />} />

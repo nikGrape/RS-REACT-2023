@@ -24,10 +24,10 @@ export default class Card extends Component<CardProps, CardState> {
       views: props.views,
     };
 
-    this.clickLike = this.clickLike.bind(this);
+    this.addLike = this.addLike.bind(this);
   }
 
-  clickLike() {
+  addLike() {
     this.setState((state) => ({
       ...state,
       likes: state.likes + 1,
@@ -47,8 +47,8 @@ export default class Card extends Component<CardProps, CardState> {
         </a>
         <h4 className="card-title">{this.props.title}</h4>
         <p className="card-desc">{this.props.desc}</p>
-        <span className="card-likes-views">
-          <p className="card-likes" onClick={this.clickLike}>
+        <span>
+          <p className="card-likes" onClick={this.addLike}>
             <FontAwesomeIcon icon={faThumbsUp} />
             {this.state.likes}
           </p>
