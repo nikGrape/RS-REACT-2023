@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faEye } from '@fortawesome/free-solid-svg-icons';
 
-export interface CardProps {
+interface CardProps {
   icon: string;
   title: string;
   desc: string;
@@ -36,7 +36,7 @@ export default class Card extends Component<CardProps, CardState> {
 
   render() {
     return (
-      <div className="card">
+      <div className="card" data-testid="card">
         <a href={this.props.link} rel="noreferrer" target="_blank">
           <img
             className="card-icon"
@@ -46,9 +46,11 @@ export default class Card extends Component<CardProps, CardState> {
           />
         </a>
         <h4 className="card-title">{this.props.title}</h4>
-        <p className="card-desc">{this.props.desc}</p>
+        <p role="definition" className="card-desc">
+          {this.props.desc}
+        </p>
         <span>
-          <p className="card-likes" onClick={this.addLike}>
+          <p className="card-likes" data-testid="card-likes" onClick={this.addLike}>
             <FontAwesomeIcon icon={faThumbsUp} />
             {this.state.likes}
           </p>

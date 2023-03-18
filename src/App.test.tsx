@@ -4,20 +4,66 @@ import { assert, describe, it } from 'vitest';
 import { MemoryRouter } from 'react-router';
 
 import { App, AppWrapper } from './App';
+import Card from './components/Card';
+import cards from './assets/card.json';
+import Main from './pages/Main';
 
 describe('App', () => {
-  it('Renders RS School 2023', () => {
+  it('Renders page desc', () => {
     render(<AppWrapper />);
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('RS School 2023');
+    expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
+      'Usefull resources to work with Web development'
+    );
   });
+
+  it('checks if card data parses correctly', () => {
+    const data = {
+      icon: 'react.svg',
+      title: 'REACT',
+      desc: 'The library for web and native user interfaces',
+      link: 'https://react.dev/',
+      likes: 100,
+      views: 5,
+    };
+
+    render(<Card {...data} />);
+    expect(screen.getByRole('heading', { level: 4 })).toHaveTextContent(data.title);
+    expect(screen.getByRole('img')).toBeDefined();
+    expect(screen.getByRole('link')).toHaveAttribute('href', data.link);
+    expect(screen.getByRole('definition')).toHaveTextContent(data.desc);
+  });
+
+  it('checks if like button works on a card', () => {
+    const data = { icon: '', title: '', desc: '', link: '', likes: 100, views: 0 };
+    render(<Card {...data} />);
+
+    const likes = screen.getByTestId('card-likes');
+    expect(likes).toHaveTextContent('100');
+    fireEvent(
+      likes,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+    expect(likes).toHaveTextContent('101');
+  });
+
+  it('render the list of all cards', () => {
+    render(<Main updateLocation={() => {}} />);
+    const cardElements = screen.getAllByTestId('card');
+
+    expect(cardElements).toHaveLength(cards.cards.length);
+    cardElements.map((card) => expect(card).toHaveClass('card'));
+  });
+
   it('Render Oops page not found on invalid path', () => {
-    // ARRANGE
     render(
       <MemoryRouter initialEntries={['/banana']}>
         <App />
       </MemoryRouter>
     );
-    // EXPECT
+
     expect(
       screen.getByRole('heading', {
         level: 1,
@@ -25,34 +71,35 @@ describe('App', () => {
     ).toHaveTextContent('404');
     expect(screen.getByTestId('page-not-found')).toHaveTextContent('page not found');
   });
+
   it('Render main page name in header', () => {
-    // ARRANGE
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>
     );
-    // EXPECT
+
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
     ).toHaveTextContent('Main');
   });
-  it('Render about page name in header', () => {
-    // ARRANGE
+
+  it("Render About Us page's name in header", () => {
     render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>
     );
-    // EXPECT
+
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
     ).toHaveTextContent('About Us');
   });
+
   it('search bar retrieves value from localStorage', () => {
     // ARRANGE
     localStorage.setItem('search', 'Hello world');
