@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import cards from '../assets/card.json';
+import { PagePropsType, Page } from './Page';
 
-export default class Main extends Component<{
-  updateLocation: (location: string, topic: string) => void;
-}> {
-  constructor(props: { updateLocation: (location: string, topic: string) => void }) {
-    super(props);
-    props.updateLocation('Main', 'Usefull resources to work with Web development');
+export default class Main extends Page {
+  constructor(props: PagePropsType) {
+    super(props, 'Main', 'Usefull resources to work with Web development');
   }
 
   render() {

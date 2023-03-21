@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { PagePropsType, Page } from './Page';
 
-export default class Page404 extends Component<{ updateLocation: (location: string) => void }> {
-  constructor(props: { updateLocation: (location: string) => void }) {
-    super(props);
-    props.updateLocation('404');
+export default class Page404 extends Page {
+  constructor(props: PagePropsType) {
+    super(props, '404');
   }
 
   render() {

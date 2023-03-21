@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { PagePropsType, Page } from './Page';
 
-export default class About extends Component<{
-  updateLocation: (location: string, topic: string) => void;
-}> {
-  constructor(props: { updateLocation: (location: string, topic: string) => void }) {
-    super(props);
-    props.updateLocation('About Us', "That's what it's all about");
+export default class About extends Page {
+  constructor(props: PagePropsType) {
+    super(props, 'About Us', "That's what it's all about");
   }
   render() {
     return (
