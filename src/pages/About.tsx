@@ -1,5 +1,5 @@
 import React from 'react';
-import { PagePropsType, Page } from './Page';
+import { PagePropsType, Page } from './AbstractPage';
 
 export default class About extends Page {
   constructor(props: PagePropsType) {

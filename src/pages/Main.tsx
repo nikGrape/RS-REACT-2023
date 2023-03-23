@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import cards from '../assets/card.json';
-import { PagePropsType, Page } from './Page';
+import { PagePropsType, Page } from './AbstractPage';
 
 export default class Main extends Page {
   constructor(props: PagePropsType) {

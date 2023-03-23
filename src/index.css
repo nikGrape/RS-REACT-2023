@@ -15,6 +15,8 @@
 
   --cards-color: #353535;
   --serch-bar-border: rgb(183, 160, 238);
+  --error-color: rgb(121, 98, 103);
+  --active-link-color: #c8caf5;
 }
 
 a {
@@ -85,12 +87,14 @@ button:focus-visible {
     background-color: whitesmoke;
     --cards-color: white;
     --serch-bar-border: #213547;
+    --error-color: rgb(251, 192, 204);
+    --active-link-color: #242cb3;
   }
   a:hover {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #dbdbdb;
   }
 }
 
@@ -276,4 +280,236 @@ span {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+/** USER CARD  */
+
+.user-cards {
+  grid-template-rows: auto;
+}
+
+.user-card {
+  height: auto;
+}
+
+.new-card {
+  opacity: 0;
+  transform: scale(0.2);
+  animation: appear 1s ease-out forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+div,
+p,
+form {
+  position: relative;
+}
+
+.success-message {
+  background-color: rgba(147, 218, 153, 0.95);
+  border-radius: 20px;
+  padding: 10px;
+  width: 50%;
+  font-size: x-large;
+  position: fixed;
+  top: 5px;
+  z-index: 555;
+  text-align: center;
+}
+
+/** USER CARDS COLOR*/
+
+.blue {
+  background-color: #aadbeb;
+  color: #242424;
+}
+.green {
+  background-color: rgb(176, 226, 180);
+  color: #242424;
+}
+.yellow {
+  background-color: rgb(248, 222, 187);
+  color: #242424;
+}
+.purple {
+  background-color: rgb(228, 202, 251);
+  color: #242424;
+}
+.red {
+  background-color: rgb(251, 192, 204);
+  color: #242424;
+}
+
+/** FORM */
+
+.flash-error {
+  animation: err 900ms 0.5s linear;
+}
+
+.error {
+  background-color: var(--error-color);
+  padding: 3px;
+  border-radius: 6px;
+  display: inline;
+  margin-left: 5px;
+}
+
+.check-errors {
+  display: flex;
+  justify-content: space-around;
+  width: 105%;
+}
+.keep30 {
+  min-width: 30%;
+  width: auto;
+  height: auto;
+  margin-right: 5px;
+}
+
+@keyframes err {
+  0% {
+    background-color: var(--error-color);
+  }
+  10% {
+    transform: translateX(3px);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  30% {
+    transform: translateX(3px);
+  }
+  40% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  70% {
+    transform: translateX(3px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  90% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+    background-color: transparent;
+  }
+}
+
+.user-form {
+  align-items: flex-start;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.sex {
+  display: flex;
+  border-radius: 15px;
+}
+
+.active-link {
+  color: var(--active-link-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  /* background-color: rgb(239, 254, 255); */
+  background-color: inherit;
+  border: 1px dashed var(--serch-bar-border);
+  user-select: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 8px;
+  user-zoom: none;
+  box-sizing: none;
+  font-size: 15px;
+  display: block;
+}
+
+label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 1px dashed var(--serch-bar-border); */
+  margin: 0px 5px 0px 5px;
+  /* padding: 3px; */
+  border-radius: 10px;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  appearance: none;
+  background-color: inherit;
+  font: inherit;
+  color: currentColor;
+  width: 30px;
+  height: 30px;
+  border: 1px dashed var(--serch-bar-border);
+  border-radius: 25%;
+  margin-right: 10px;
+  display: grid;
+  place-content: center;
+}
+
+input[type='radio']::before,
+input[type='checkbox']::before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  border-radius: 25%;
+  transform: scale(0);
+  transition: 250ms all ease-in-out;
+  background-color: rgb(173, 159, 235);
+  z-index: 555;
+}
+
+input[type='radio']:checked::before,
+input[type='checkbox']:checked::before {
+  transform: scale(1);
+}
+
+.avatar-input {
+  border: 1px dashed var(--serch-bar-border);
+  border-radius: 10px;
+  padding-left: 10px;
+  margin: 5px;
+}
+
+.avatar-input input {
+  border: none;
+}
+.input-group {
+  display: flex;
+  align-items: space-around;
+  justify-content: space-around;
+}
+
+button[type='submit'] {
+  margin: 10px;
 }

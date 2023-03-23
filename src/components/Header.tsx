@@ -6,27 +6,21 @@ export default class Header extends Component<{ location: string; topic?: string
     super(props);
   }
 
-  activeStyle = (isActive: boolean) =>
-    isActive
-      ? {
-          color: 'darkblue',
-          textDecoration: 'none',
-        }
-      : {};
+  activeStyle = (isActive: boolean) => (isActive ? 'active-link' : '');
   render() {
     return this.props.location !== '404' ? (
       <div id="app-header">
         <h1>{this.props.location}</h1>
         <h3>{this.props.topic}</h3>
         <div id="links">
-          <NavLink to="/" style={({ isActive }) => this.activeStyle(isActive)}>
+          <NavLink to="/" className={({ isActive }) => this.activeStyle(isActive)}>
             Main
           </NavLink>
-          <NavLink to="/about" style={({ isActive }) => this.activeStyle(isActive)}>
-            About
-          </NavLink>
-          <NavLink to="/users" style={({ isActive }) => this.activeStyle(isActive)}>
+          <NavLink to="/users" className={({ isActive }) => this.activeStyle(isActive)}>
             Users
+          </NavLink>
+          <NavLink to="/about" className={({ isActive }) => this.activeStyle(isActive)}>
+            About
           </NavLink>
         </div>
       </div>

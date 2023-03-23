@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PagePropsType, Page } from './Page';
+import { PagePropsType, Page } from './AbstractPage';
 
 export default class Page404 extends Page {
   constructor(props: PagePropsType) {

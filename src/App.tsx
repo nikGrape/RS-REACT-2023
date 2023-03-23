@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
-import Users from './pages/Users';
+import UsersPage from './pages/UsersPage';
 import Page404 from './pages/Page404';
 import About from './pages/About';
 import Header from './components/Header';
@@ -32,9 +32,9 @@ export class App extends React.Component<object, { location: string; topic: stri
         <Header location={this.state.location} topic={this.state.topic} />
         <Routes>
           <Route path="/" element={<Main updateLocation={this.updateLocation} />} />
+          <Route path="/users" element={<UsersPage updateLocation={this.updateLocation} />} />
           <Route path="/about" element={<About updateLocation={this.updateLocation} />} />
           <Route path="*" element={<Page404 updateLocation={this.updateLocation} />} />
-          <Route path="/users" element={<Users updateLocation={this.updateLocation} />} />
         </Routes>
       </Fragment>
     );

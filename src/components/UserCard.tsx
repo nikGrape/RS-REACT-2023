@@ -1,20 +1,5 @@
 import React, { Component } from 'react';
-
-export interface UserInterface {
-  firstname: string;
-  lastname: string;
-  brainWeight: number;
-  zip: string;
-  birthdate: Date;
-  male: boolean;
-  female: boolean;
-  policy: boolean;
-  datashere: boolean;
-  flatEarth: boolean;
-  cardColor: string;
-  bio: string;
-  avatar: string;
-}
+import { UserInterface } from './User';
 
 export default class UserCard extends Component<UserInterface> {
   render() {
@@ -28,22 +13,23 @@ export default class UserCard extends Component<UserInterface> {
       policy,
       datashere,
       flatEarth,
-      //   cardColor,
+      cardColor,
       bio,
       avatar,
     } = this.props;
 
     return (
-      <div className="card" data-testid="card">
-        <img className="card-icon" src={avatar} alt={`avatar`} />
-        <h4 className="card-title">Name: {`${firstname} ${lastname}`}</h4>
-        <time>Birthday: {birthdate.toDateString()}</time>
+      <div className={`card user-card new-card ${cardColor}`} data-testid="card">
+        <img className="avatar" src={avatar} alt={`avatar`} />
+        <h4 className="card-title">{`${firstname} ${lastname}`}</h4>
+        <time>Birthday: {new Date(birthdate).toDateString()}</time>
         <p>Sex: {male ? 'Male' : 'Female'}</p>
-        <p>My Brain Weight: {brainWeight}</p>
+        <p>Brain Weight: {brainWeight}</p>
         <p>ZIP: {zip}</p>
         <p className="card-desc">Bio: {bio}</p>
         <p>
-          Permitions: {policy && 'Policy'} {datashere && 'Share my data'}
+          Agreed to: {datashere && 'Share data'}
+          {policy && ', Policy'}
         </p>
         <p>{!flatEarth && 'I believe that Earth is flat!'}</p>
       </div>
