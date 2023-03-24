@@ -44,8 +44,6 @@ export default class User implements UserInterface {
     this.flatEarth = userForm.flatEarth.current?.checked || false;
     this.cardColor = userForm.cardColor.current?.value.toLocaleLowerCase() || 'gray';
     this.bio = userForm.bio.current?.value || 'I am a future React developer';
-    this.avatar =
-      userForm.avatar.current?.value ||
-      'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
+    this.avatar = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
   }
 }

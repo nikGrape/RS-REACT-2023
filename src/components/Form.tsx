@@ -5,15 +5,13 @@ import Brain from './FormComponents/Brain';
 import ZIP from './FormComponents/Zip';
 import BirthDate from './FormComponents/BirthDate';
 import Sex from './FormComponents/Sex';
+import Bio from './FormComponents/Bio';
 import Check from './FormComponents/Check';
 import Avatar from './FormComponents/Avatar';
 import { validate } from './FormComponents/FormValidator';
+import CardColor from './FormComponents/CardColor';
 
-interface FormProps {
-  pushUser: (form: User) => void;
-}
-
-export class FromErrors {
+export class FormErrors {
   firstname = false;
   lastname = false;
   brainWeight = false;
@@ -29,14 +27,25 @@ export class FromErrors {
   avatar = false;
 }
 
-export default class Form extends Component<FormProps, { errors: FromErrors }> {
+interface FormProps {
+  pushUser: (form: User) => void;
+}
+
+interface FormState {
+  errors: FormErrors;
+  avatar: string;
+}
+
+export default class Form extends Component<FormProps, FormState> {
   constructor(props: FormProps) {
     super(props);
 
     this.state = {
-      errors: new FromErrors(),
+      errors: new FormErrors(),
+      avatar: '',
     };
     this.onsubmit = this.onsubmit.bind(this);
+    this.setAvatar = this.setAvatar.bind(this);
   }
 
   firstname = Ref<HTMLInputElement>();
@@ -53,8 +62,13 @@ export default class Form extends Component<FormProps, { errors: FromErrors }> {
   bio = Ref<HTMLTextAreaElement>();
   avatar = Ref<HTMLInputElement>();
 
-  hasErrors(err: FromErrors): boolean {
+  hasErrors(err: FormErrors): boolean {
     return Object.values(err).some((e) => e);
+  }
+
+  setAvatar(img: string) {
+    this.setState((state) => ({ ...state, avatar: img }));
+    return img;
   }
 
   onsubmit(e: React.ChangeEvent<HTMLFormElement>) {
@@ -62,8 +76,11 @@ export default class Form extends Component<FormProps, { errors: FromErrors }> {
     const validation = validate(this);
     this.setState((state) => ({ ...state, errors: validation }));
     if (!this.hasErrors(validation)) {
-      this.props.pushUser(new User(this));
+      const user = new User(this);
+      if (this.state.avatar != '') user.avatar = this.state.avatar;
+      this.props.pushUser(user);
       e.target.reset();
+      this.setState((state) => ({ ...state, avatar: '' }));
     }
   }
 
@@ -84,30 +101,18 @@ export default class Form extends Component<FormProps, { errors: FromErrors }> {
           female={{ ref: this.female, err: errors.female }}
           male={{ ref: this.male, err: errors.male }}
         />
-        <textarea
-          name="bio"
-          cols={30}
-          rows={1}
-          ref={this.bio}
-          placeholder="type in your bio"
-        ></textarea>
+        <Bio bio={{ ref: this.bio, err: errors.bio }} />
         <Check
           policy={{ ref: this.policy, err: errors.policy }}
           datashere={{ ref: this.datashere, err: errors.datashere }}
           flatEarth={{ ref: this.flatEarth, err: errors.flatEarth }}
         />
-        <label htmlFor="card-color">
-          <select name="cardColor" id="card-color" ref={this.cardColor}>
-            <option value="">Choose Your Card Color</option>
-            <option>Blue</option>
-            <option>Green</option>
-            <option>Yellow</option>
-            <option>Purple</option>
-            <option>Red</option>
-          </select>
-        </label>
-
-        <Avatar avatar={{ ref: this.avatar, err: errors.avatar }} />
+        <CardColor cardColor={{ ref: this.cardColor, err: errors.cardColor }} />
+        <Avatar
+          avatar={{ ref: this.avatar, err: errors.avatar }}
+          setAvatar={this.setAvatar}
+          selected={this.state.avatar != ''}
+        />
 
         <button type="submit">submit</button>
       </form>
