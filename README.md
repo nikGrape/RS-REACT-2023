@@ -8,6 +8,21 @@ run tests: <code>npm run test</code>
 
 <hr/>
 
+### WEEK TWO
+desc: forms<br/>
+
+Command to run the app (terminal):
+  ```
+  git clone https://github.com/nikGrape/RS-REACT-2023.git nikGrape_react_week2 && cd nikGrape_react_week2 && git checkout week_2 && npm i && npm run dev
+  ```
+or manually: </br>
+1. clone the repo ```git clone https://github.com/nikGrape/RS-REACT-2023.git```
+2. swhtch branch to <b>week_2</b>: <code>git checkout week_2</code>
+3. install packages: <code>npm i</code>
+4. run the app: <code>npm run dev</code>
+5. copy the address to browser or press <b>o</b>
+<hr/>
+
 ###  WEEK ONE
 desc: cards and search bar<br/>
 Command to run the app (terminal):
@@ -21,19 +36,5 @@ or manually: </br>
 4. run the app: <code>npm run dev</code>
 5. copy the address to browser or press <b>o</b>
 
-<hr/>
 
-### WEEK TWO
-desc: forms<br/>
-
-Command to run the app (terminal):
-  ```
-  git clone https://github.com/nikGrape/RS-REACT-2023.git nikGrape_react_week2 && cd nikGrape_react_week1 && git checkout week_2 && npm i && npm run dev
-  ```
-or manually: </br>
-1. clone the repo ```git clone https://github.com/nikGrape/RS-REACT-2023.git```
-2. swhtch branch to <b>week_2</b>: <code>git checkout week_2</code>
-3. install packages: <code>npm i</code>
-4. run the app: <code>npm run dev</code>
-5. copy the address to browser or press <b>o</b>
 
