@@ -15,8 +15,8 @@ export default class Avatar extends Component<AvatarProps> {
   }
 
   handleFileUpload({ target: { files } }: React.ChangeEvent<HTMLInputElement>) {
-    const file = files?.item(0);
-    if (!file) return;
+    if (!files) return;
+    const file = files[0];
     const image = URL.createObjectURL(file);
     this.props.setAvatar(image);
   }
@@ -24,13 +24,16 @@ export default class Avatar extends Component<AvatarProps> {
   render() {
     return (
       <Fragment>
-        <label className={this.props.selected ? 'avatar-upload img-selected' : 'avatar-upload'}>
-          {'Avatar:'}
+        <label
+          htmlFor="avatar-input"
+          className={this.props.selected ? 'avatar-upload img-selected' : 'avatar-upload'}
+        >
+          Avatar:
           <input
             type="file"
             name="avatar"
             ref={this.props.avatar.ref}
-            placeholder="Avarat"
+            id="avatar-input"
             accept="image/*"
             onChange={(e) => this.handleFileUpload(e)}
           />

@@ -20,7 +20,9 @@ export default class UserCard extends Component<UserInterface> {
 
     return (
       <div className={`card user-card new-card ${cardColor}`} data-testid="card">
-        <img className="avatar" src={avatar} alt={`avatar`} />
+        <div className="avatar-box">
+          <img className="avatar" src={avatar} alt={`avatar`} />
+        </div>
         <h4 className="card-title">{`${firstname} ${lastname}`}</h4>
         <time>Birthday: {new Date(birthdate).toDateString()}</time>
         <p>Sex: {male ? 'Male' : 'Female'}</p>

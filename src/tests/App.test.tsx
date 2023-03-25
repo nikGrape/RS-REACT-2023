@@ -3,10 +3,10 @@ import React from 'react';
 import { assert, describe, it } from 'vitest';
 import { MemoryRouter } from 'react-router';
 
-import { App, AppWrapper } from './App';
-import Card from './components/Card';
-import cards from './assets/card.json';
-import Main from './pages/Main';
+import { App, AppWrapper } from '../App';
+import Card from '../components/Card';
+import cards from '../assets/card.json';
+import Main from '../pages/Main';
 
 describe('App', () => {
   it('Renders page desc', () => {

@@ -14,7 +14,7 @@ export default class SearchBar extends Component<object, { search: string; updat
   }
 
   componentDidMount() {
-    const search: string = new String(localStorage.getItem('search')).toString();
+    const search: string = new String(localStorage.getItem('search') || '').toString();
     this.setState((state) => ({
       ...state,
       search: search,

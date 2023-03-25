@@ -74,6 +74,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: inherit;
 }
 button:hover {
   border-color: #646cff;
@@ -313,10 +314,6 @@ span {
   }
 }
 
-.avatar {
-  border-radius: 50%;
-}
-
 div,
 p,
 form {
@@ -532,9 +529,14 @@ button[type='submit'] {
   margin: 10px;
 }
 
-.user-card img {
+.avatar-box {
   width: 200px;
   height: 200px;
+  overflow: hidden;
   border-radius: 50%;
+}
+
+.user-card img {
+  width: 200px;
   border: none;
 }
