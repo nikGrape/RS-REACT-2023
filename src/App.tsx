@@ -6,6 +6,7 @@ import UsersPage from './pages/UsersPage';
 import Page404 from './pages/Page404';
 import About from './pages/About';
 import Header from './components/Header';
+import ThemeSwitch from './components/ThemeSwitch';
 
 export class App extends React.Component<object, { location: string; topic: string }> {
   constructor(props: object) {
@@ -30,6 +31,7 @@ export class App extends React.Component<object, { location: string; topic: stri
     return (
       <Fragment>
         <Header location={this.state.location} topic={this.state.topic} />
+        <ThemeSwitch liftTheme={() => {}} />
         <Routes>
           <Route path="/" element={<Main updateLocation={this.updateLocation} />} />
           <Route path="/users" element={<UsersPage updateLocation={this.updateLocation} />} />

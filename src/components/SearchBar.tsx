@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-export default class SearchBar extends Component<object, { search: string; updated: boolean }> {
+interface SearchBarState {
+  search: string;
+  updated: boolean;
+}
+
+export default class SearchBar extends Component<object, SearchBarState> {
   constructor(props: object) {
     super(props);
     this.state = {
