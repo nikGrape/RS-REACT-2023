@@ -31,7 +31,7 @@ export class App extends React.Component<object, { location: string; topic: stri
     return (
       <Fragment>
         <Header location={this.state.location} topic={this.state.topic} />
-        <ThemeSwitch liftTheme={() => {}} />
+        <ThemeSwitch />
         <Routes>
           <Route path="/" element={<Main updateLocation={this.updateLocation} />} />
           <Route path="/users" element={<UsersPage updateLocation={this.updateLocation} />} />
