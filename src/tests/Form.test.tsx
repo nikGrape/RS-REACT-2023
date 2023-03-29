@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, it, vitest } from 'vitest';
 
-import Form from '../components/Form';
+import Form from '../components/FormComponents/FormOld';
 
 describe('Form', () => {
   it('birth date requirements', () => {

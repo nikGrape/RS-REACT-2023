@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-interface ThemeSwitchState {
-  theme: string;
-  dark: string;
-  light: string;
-}
+const ThemeSwitch = () => {
+  const [theme, setState] = useState('light');
 
-export default class ThemeSwitch extends Component<object, ThemeSwitchState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      theme: 'light',
-      dark: `body {
+  const dark = `body {
 		--color: rgba(255, 255, 255, 0.87);
 		--background-color: #242424;
 		--cards-color: #353535;
@@ -24,8 +16,8 @@ export default class ThemeSwitch extends Component<object, ThemeSwitchState> {
 		--avatar-upload-hover: #362857;
 		--avatar-upload-select: rgb(58, 82, 58);
 		--button-color: #1a1a1a;
-	  }`,
-      light: `body { 
+	  }`;
+  const light = `body { 
 		--color: #213547;
 		--background-color: whitesmoke;
 		--cards-color: white;
@@ -35,34 +27,26 @@ export default class ThemeSwitch extends Component<object, ThemeSwitchState> {
 		--avatar-upload-hover: #c8caf5;
 		--avatar-upload-select: rgb(178, 241, 178);
 		--button-color: #dbdbdb;
-	  }`,
-    };
+	  }`;
 
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    if (this.state.theme == 'light') {
-      this.setState({ theme: 'dark' });
+  const handleClick = () => {
+    if (theme == 'light') {
+      setState('dark');
     } else {
-      this.setState({ theme: 'light' });
+      setState('light');
     }
-  }
+  };
 
-  render() {
-    return (
-      <HelmetProvider>
-        <div onClick={this.handleClick} className="theme">
-          <Helmet>
-            <style>{this.state.theme == 'light' ? this.state.light : this.state.dark}</style>
-          </Helmet>
-          {this.state.theme == 'light' ? (
-            <FontAwesomeIcon icon={faSun} />
-          ) : (
-            <FontAwesomeIcon icon={faMoon} />
-          )}
-        </div>
-      </HelmetProvider>
-    );
-  }
-}
+  return (
+    <HelmetProvider>
+      <div onClick={handleClick} className="theme">
+        <Helmet>
+          <style>{theme == 'light' ? light : dark}</style>
+        </Helmet>
+        {theme == 'light' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
+      </div>
+    </HelmetProvider>
+  );
+};
+
+export default ThemeSwitch;

@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const SearchBar = () => {
-  const [state, setState] = useState({
-    search: localStorage.getItem('search') || '',
-  });
+  const [search, setSearch] = useState(localStorage.getItem('search') || '');
 
-  const { search } = state;
+  const searchRef = useRef<string>('');
+
+  useEffect(() => {
+    searchRef.current = search;
+  }, [search]);
 
   useEffect(() => {
     return () => {
-      localStorage.setItem('search', search);
+      localStorage.setItem('search', searchRef.current);
     };
-  }, [search]);
+  }, []);
 
   return (
     <div id="search-bar">
@@ -25,7 +27,7 @@ const SearchBar = () => {
         placeholder="search bar"
         value={search}
         onChange={(e) => {
-          setState({ search: e.target.value });
+          setSearch(e.target.value);
         }}
       />
     </div>

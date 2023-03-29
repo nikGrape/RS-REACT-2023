@@ -14,7 +14,6 @@
   --background-color: #242424;
   --cards-color: #353535;
   --serch-bar-border: rgb(183, 160, 238);
-  --error-color: rgb(121, 98, 103);
   --active-link-color: #c8caf5;
   --avatar-upload-hover: #362857;
   --avatar-upload-select: rgb(58, 82, 58);
@@ -345,6 +344,10 @@ form {
   position: relative;
 }
 
+p {
+  margin: 2px;
+}
+
 .success-message {
   background-color: rgba(147, 218, 153, 0.95);
   border-radius: 20px;
@@ -444,6 +447,7 @@ form {
 }
 
 .user-form {
+  position: relative;
   align-items: flex-start;
   justify-items: center;
   display: flex;
@@ -470,7 +474,7 @@ select {
   outline: none;
   padding: 8px;
   border-radius: 10px;
-  margin: 8px;
+  margin: 0px 8px 3px 0px;
   user-zoom: none;
   box-sizing: none;
   font-size: 15px;
@@ -535,12 +539,18 @@ input[type='checkbox']:checked::before {
   background-color: var(--avatar-upload-select);
 }
 
+.img-error {
+  background-color: var(--error-color);
+}
+
 .avatar-upload input {
   border: none;
   opacity: 0;
   position: absolute;
 }
 
+.fa-circle-exclamation,
+.fa-check,
 .fa-user-plus {
   margin: 0px 20px 0px 30px;
 }

@@ -3,14 +3,14 @@ import React from 'react';
 import { describe, it, vitest } from 'vitest';
 import { act } from 'react-dom/test-utils';
 
-import UsersPage from '../pages/UsersPage';
+import UsersPage from '../pages/Users';
 
 describe('Form', () => {
   it('birth date requirements', async () => {
     global.URL.createObjectURL = vitest.fn();
     vitest.useFakeTimers();
     localStorage.removeItem('users');
-    render(<UsersPage updateLocation={() => {}} />);
+    render(<UsersPage />);
 
     expect(screen.queryByText(/Agreed to: Share data/i)).not.toBeInTheDocument();
 
@@ -80,7 +80,7 @@ describe('Form', () => {
 it('if no avatar selected use default image', async () => {
   localStorage.removeItem('users');
   global.URL.createObjectURL = vitest.fn();
-  render(<UsersPage updateLocation={() => {}} />);
+  render(<UsersPage />);
 
   const fileInput = screen.getByLabelText(/avatar:/i);
   fireEvent.change(fileInput, {

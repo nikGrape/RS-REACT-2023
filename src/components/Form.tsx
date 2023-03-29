@@ -1,121 +1,227 @@
-import React, { Component, createRef as Ref } from 'react';
-import User from './User';
-import Name from './FormComponents/Name';
-import Brain from './FormComponents/Brain';
-import ZIP from './FormComponents/Zip';
-import BirthDate from './FormComponents/BirthDate';
-import Sex from './FormComponents/Sex';
-import Bio from './FormComponents/Bio';
-import Check from './FormComponents/Check';
-import Avatar from './FormComponents/Avatar';
-import { validate } from './FormComponents/FormValidator';
-import CardColor from './FormComponents/CardColor';
+import React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faCircleExclamation, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
 
-export class FormErrors {
-  firstname = false;
-  lastname = false;
-  brainWeight = false;
-  zip = false;
-  birthdate = false;
-  male = false;
-  female = false;
-  policy = false;
-  datashere = false;
-  flatEarth = false;
-  cardColor = false;
-  bio = false;
-  avatar = false;
-}
-
-interface FormProps {
-  pushUser: (form: User) => void;
-}
-
-interface FormState {
-  errors: FormErrors;
+export interface User {
   avatar: string;
+  firstname: string;
+  lastname: string;
+  brainWeight: number;
+  zip: string;
+  birthdate: Date;
+  sex: string;
+  policy: string;
+  datashere: string;
+  flatEarth: string;
+  cardColor: string;
+  bio: string;
 }
 
-export default class Form extends Component<FormProps, FormState> {
-  constructor(props: FormProps) {
-    super(props);
+interface Input {
+  avatar: FileList;
+  firstname: string;
+  lastname: string;
+  brainWeight: number;
+  zip: string;
+  birthdate: Date;
+  sex: string;
+  policy: string;
+  datashere: string;
+  flatEarth: string;
+  cardColor: string;
+  bio: string;
+}
 
-    this.state = {
-      errors: new FormErrors(),
-      avatar: '',
-    };
-    this.onsubmit = this.onsubmit.bind(this);
-    this.setAvatar = this.setAvatar.bind(this);
-  }
+interface FormPorps {
+  addUser: (user: User) => void;
+}
 
-  firstname = Ref<HTMLInputElement>();
-  lastname = Ref<HTMLInputElement>();
-  brainWeight = Ref<HTMLInputElement>();
-  zip = Ref<HTMLInputElement>();
-  birthdate = Ref<HTMLInputElement>();
-  male = Ref<HTMLInputElement>();
-  female = Ref<HTMLInputElement>();
-  policy = Ref<HTMLInputElement>();
-  datashere = Ref<HTMLInputElement>();
-  flatEarth = Ref<HTMLInputElement>();
-  cardColor = Ref<HTMLSelectElement>();
-  bio = Ref<HTMLTextAreaElement>();
-  avatar = Ref<HTMLInputElement>();
+const FormHook = (props: FormPorps) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<Input>();
 
-  hasErrors(err: FormErrors): boolean {
-    return Object.values(err).some((e) => e);
-  }
+  const onSubmit: SubmitHandler<Input> = (data) => {
+    props.addUser({ ...data, avatar: URL.createObjectURL(data.avatar.item(0)) });
+    reset();
+  };
 
-  setAvatar(img: string) {
-    this.setState((state) => ({ ...state, avatar: img }));
-    return img;
-  }
-
-  onsubmit(e: React.ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const validation = validate(this);
-    this.setState((state) => ({ ...state, errors: validation }));
-    if (!this.hasErrors(validation)) {
-      const user = new User(this);
-      if (this.state.avatar != '') user.avatar = this.state.avatar;
-      this.props.pushUser(user);
-      e.target.reset();
-      this.setState((state) => ({ ...state, avatar: '' }));
-    }
-  }
-
-  render() {
-    const errors = this.state.errors;
-    return (
-      <form onSubmit={this.onsubmit} className="user-form">
-        <div>
-          <Name
-            firstname={{ ref: this.firstname, err: errors.firstname }}
-            lastname={{ ref: this.lastname, err: errors.lastname }}
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="user-form">
+      <input
+        type="text"
+        placeholder="First Name"
+        className={errors.firstname ? 'flash-error' : ''}
+        {...register('firstname', {
+          required: 'First Name is Required',
+          minLength: { value: 2, message: 'minimum length is 2' },
+          pattern: {
+            value: /^[A-Z][A-Za-z]+$/,
+            message: 'should start with a capital letter and contain only letters',
+          },
+        })}
+      />
+      {errors.firstname && <p className="error">{errors.firstname.message}</p>}
+      <input
+        type="text"
+        placeholder="Last Name"
+        {...register('lastname', {
+          required: 'Last Name is Required',
+          minLength: { value: 2, message: 'minimum length is 2' },
+          pattern: {
+            value: /^[A-Z][A-Za-z]+$/,
+            message: 'should start with a capital letter and contain only letters',
+          },
+        })}
+      />
+      {errors.lastname && <p className="error">{errors.lastname.message}</p>}
+      <input
+        type="number"
+        placeholder="Brain Weight (grams)"
+        {...register('brainWeight', {
+          required: 'Required',
+          min: { value: 1000, message: 'has to be more than 1000' },
+          max: { value: 1500, message: 'has to be less than 1500' },
+        })}
+      />
+      {errors.brainWeight && <p className="error">{errors.brainWeight.message}</p>}
+      <input
+        type="text"
+        placeholder="ZIP"
+        className={errors.zip ? 'flash-error' : ''}
+        {...register('zip', {
+          required: 'ZIP is required',
+          pattern: { value: /^\d{4,8}$/, message: 'should contain 4-8 numbers' },
+        })}
+      />
+      {errors.zip && <p className="error">{errors.zip.message}</p>}
+      <label htmlFor="birthdate">
+        Birth Date:
+        <input
+          type="date"
+          id="birthdate"
+          placeholder="Birth Date"
+          {...register('birthdate', {
+            required: 'Birthdate is required',
+            validate: (value) => {
+              const birthdate = dayjs(value);
+              const go14yearsBack = dayjs().subtract(14, 'year');
+              const go100yearsBack = dayjs().subtract(100, 'year');
+              if (go14yearsBack.isBefore(birthdate)) return 'User has to be at least 14 years old';
+              if (go100yearsBack.isAfter(birthdate)) return 'You cannot be older than a 100';
+              return true;
+            },
+          })}
+        />
+      </label>
+      {errors.birthdate && <p className="error">{errors.birthdate.message}</p>}
+      <div className={errors.sex ? 'sex flash-error' : 'sex'}>
+        <label>
+          <input
+            type="radio"
+            value="Female"
+            {...register('sex', { required: 'You need to choose one' })}
           />
-          <Brain brainWeight={{ ref: this.brainWeight, err: errors.brainWeight }} />
-          <ZIP zip={{ ref: this.zip, err: errors.zip }} />
-        </div>
-        <BirthDate birthdate={{ ref: this.birthdate, err: errors.birthdate }} />
-        <Sex
-          female={{ ref: this.female, err: errors.female }}
-          male={{ ref: this.male, err: errors.male }}
-        />
-        <Bio bio={{ ref: this.bio, err: errors.bio }} />
-        <Check
-          policy={{ ref: this.policy, err: errors.policy }}
-          datashere={{ ref: this.datashere, err: errors.datashere }}
-          flatEarth={{ ref: this.flatEarth, err: errors.flatEarth }}
-        />
-        <CardColor cardColor={{ ref: this.cardColor, err: errors.cardColor }} />
-        <Avatar
-          avatar={{ ref: this.avatar, err: errors.avatar }}
-          setAvatar={this.setAvatar}
-          selected={this.state.avatar != ''}
-        />
+          Female
+        </label>
+        <label>
+          <input type="radio" value="Male" {...register('sex')} />
+          Male
+        </label>
+      </div>
+      {errors.sex && <p className="error">{errors.sex.message}</p>}
+      <textarea
+        cols={30}
+        rows={1}
+        placeholder="type in your bio"
+        {...register('bio', {
+          required: 'Bio is required',
+          minLength: { value: 10, message: 'minimum length is 10 letters' },
+        })}
+      />
+      {errors.bio && <p className="error">{errors.bio.message}</p>}
 
-        <button type="submit">submit</button>
-      </form>
-    );
-  }
-}
+      <label htmlFor="policy">
+        <input
+          type="checkbox"
+          id="policy"
+          {...register('policy', { required: 'You have to agree to private policy' })}
+        />
+        I agree to the private policy
+      </label>
+      {errors.policy && <p className="error">{errors.policy.message}</p>}
+
+      <label htmlFor="datashere">
+        <input
+          type="checkbox"
+          id="datashere"
+          className={errors.datashere ? 'flash-error' : ''}
+          {...register('datashere', { required: 'You have to agree to share your data' })}
+        />
+        I agree to share my personal data
+      </label>
+      {errors.datashere && <p className="error">{errors.datashere.message}</p>}
+
+      <label htmlFor="flatEarth">
+        <input type="checkbox" id="flatEarth" {...register('flatEarth')} />
+        {'I agree that Earth is not flat'}
+      </label>
+      {errors.flatEarth && (
+        <p className="error">
+          If you believe in flat Earth your brain weight cannot be more than 1010!
+        </p>
+      )}
+      <label htmlFor="card-color">
+        <select
+          id="card-color"
+          {...register('cardColor', {
+            required: 'Choose a card color',
+          })}
+        >
+          <option value="">Choose Your Card Color</option>
+          <option>Default</option>
+          <option>Blue</option>
+          <option>Green</option>
+          <option>Yellow</option>
+          <option>Purple</option>
+          <option>Red</option>
+        </select>
+      </label>
+      {errors.cardColor && <p className="error">{errors.cardColor.message}</p>}
+      <label
+        htmlFor="avatar-input"
+        className={`avatar-upload ${watch('avatar')?.item(0) && !errors.avatar && 'img-selected'} ${
+          errors.avatar && 'img-error'
+        }`}
+      >
+        Avatar:
+        <input
+          type="file"
+          id="avatar-input"
+          {...register('avatar', {
+            required: 'Choose an avatar',
+            validate: (value) => {
+              return value[0].type.match(/image\/.*/i) ? true : 'Only images accepted';
+            },
+          })}
+        />
+        <FontAwesomeIcon
+          icon={
+            !watch('avatar')?.item(0) ? faUserPlus : errors.avatar ? faCircleExclamation : faCheck
+          }
+        />
+      </label>
+      {errors.avatar && <p className="error">{errors.avatar.message}</p>}
+
+      <button type="submit">submit</button>
+    </form>
+  );
+};
+
+export default FormHook;
