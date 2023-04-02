@@ -50,7 +50,7 @@ describe('App', () => {
   });
 
   it('render the list of all cards', () => {
-    render(<Main updateLocation={() => {}} />);
+    render(<Main />);
     const cardElements = screen.getAllByTestId('card');
 
     expect(cardElements).toHaveLength(cards.cards.length);
@@ -93,11 +93,8 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      })
-    ).toHaveTextContent('About Us');
+    const p = screen.getByText(/this site contains many useful.*/i);
+    expect(p).toBeInTheDocument();
   });
 
   it('search bar retrieves value from localStorage', () => {

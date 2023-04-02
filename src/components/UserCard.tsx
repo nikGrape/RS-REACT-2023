@@ -18,7 +18,7 @@ const UserCard = (props: User) => {
   } = props;
 
   return (
-    <div className={`card user-card new-card ${cardColor}`} data-testid="card">
+    <div className={`card user-card new-card ${cardColor.toLocaleLowerCase()}`} data-testid="card">
       <div className="avatar-box">
         <img className="avatar" src={avatar} alt={`avatar`} />
       </div>

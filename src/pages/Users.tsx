@@ -14,7 +14,7 @@ const Users = () => {
     success: false,
   };
 
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<UsersState>(initialState);
 
   const successMessage = () => {
     setState((state) => ({
@@ -26,7 +26,7 @@ const Users = () => {
     }, 3500);
   };
 
-  const addUser: (user: User) => void = (user) => {
+  const addUser: (user: User) => void = async (user) => {
     if (user) {
       successMessage();
       setState((state) => ({

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
@@ -13,9 +13,9 @@ export const App = () => {
     showHeader: true,
   });
 
-  const showHeader = (showHeader: boolean): void => {
+  const showHeader = useCallback((showHeader: boolean): void => {
     setState({ showHeader });
-  };
+  }, []);
 
   return (
     <Fragment>

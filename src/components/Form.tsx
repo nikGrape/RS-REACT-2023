@@ -38,17 +38,24 @@ interface FormPorps {
   addUser: (user: User) => void;
 }
 
-const FormHook = (props: FormPorps) => {
+const Form = (props: FormPorps) => {
   const {
     register,
     handleSubmit,
     watch,
     reset,
     formState: { errors },
-  } = useForm<Input>();
+  } = useForm<Input>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
+
+  const avatar: () => File | null = () => {
+    if (!watch('avatar')) return null;
+    if (watch('avatar').length == 0) return null;
+    return watch('avatar')[0];
+  };
 
   const onSubmit: SubmitHandler<Input> = (data) => {
-    props.addUser({ ...data, avatar: URL.createObjectURL(data.avatar.item(0)) });
+    console.log(data);
+    props.addUser({ ...data, avatar: URL.createObjectURL(data.avatar[0]) });
     reset();
   };
 
@@ -61,9 +68,11 @@ const FormHook = (props: FormPorps) => {
         {...register('firstname', {
           required: 'First Name is Required',
           minLength: { value: 2, message: 'minimum length is 2' },
-          pattern: {
-            value: /^[A-Z][A-Za-z]+$/,
-            message: 'should start with a capital letter and contain only letters',
+          validate: {
+            capital: (value) =>
+              /^[A-Z].+$/.test(value) ? true : 'should start with a capital letter',
+            onlyLetters: (value) =>
+              /^[A-Za-z]+$/.test(value) ? true : 'should contain only letters',
           },
         })}
       />
@@ -74,9 +83,11 @@ const FormHook = (props: FormPorps) => {
         {...register('lastname', {
           required: 'Last Name is Required',
           minLength: { value: 2, message: 'minimum length is 2' },
-          pattern: {
-            value: /^[A-Z][A-Za-z]+$/,
-            message: 'should start with a capital letter and contain only letters',
+          validate: {
+            capital: (value) =>
+              /^[A-Z].+$/.test(value) ? true : 'should start with a capital letter',
+            onlyLetters: (value) =>
+              /^[A-Za-z]+$/.test(value) ? true : 'should contain only letters',
           },
         })}
       />
@@ -196,7 +207,7 @@ const FormHook = (props: FormPorps) => {
       {errors.cardColor && <p className="error">{errors.cardColor.message}</p>}
       <label
         htmlFor="avatar-input"
-        className={`avatar-upload ${watch('avatar')?.item(0) && !errors.avatar && 'img-selected'} ${
+        className={`avatar-upload ${avatar() && !errors.avatar && 'img-selected'} ${
           errors.avatar && 'img-error'
         }`}
       >
@@ -212,9 +223,7 @@ const FormHook = (props: FormPorps) => {
           })}
         />
         <FontAwesomeIcon
-          icon={
-            !watch('avatar')?.item(0) ? faUserPlus : errors.avatar ? faCircleExclamation : faCheck
-          }
+          icon={!avatar() ? faUserPlus : errors.avatar ? faCircleExclamation : faCheck}
         />
       </label>
       {errors.avatar && <p className="error">{errors.avatar.message}</p>}
@@ -224,4 +233,4 @@ const FormHook = (props: FormPorps) => {
   );
 };
 
-export default FormHook;
+export default Form;
