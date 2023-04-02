@@ -54,7 +54,6 @@ const Form = (props: FormPorps) => {
   };
 
   const onSubmit: SubmitHandler<Input> = (data) => {
-    console.log(data);
     props.addUser({ ...data, avatar: URL.createObjectURL(data.avatar[0]) });
     reset();
   };

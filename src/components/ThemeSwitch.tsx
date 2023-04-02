@@ -39,7 +39,7 @@ const ThemeSwitch = () => {
 
   return (
     <HelmetProvider>
-      <div onClick={handleClick} className="theme">
+      <div onClick={handleClick} className="theme" role="button">
         <Helmet>
           <style>{theme == 'light' ? light : dark}</style>
         </Helmet>

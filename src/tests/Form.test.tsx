@@ -34,7 +34,6 @@ describe('Form', () => {
     const submit = screen.getByRole('button');
     await userEvent.click(submit);
 
-    console.log('submit', submit.innerHTML);
     expect(await screen.findByText(/should start with a capital letter.*/i)).toBeInTheDocument();
 
     await fireEvent.change(nameInput, { target: { value: 'Olivia' } });
