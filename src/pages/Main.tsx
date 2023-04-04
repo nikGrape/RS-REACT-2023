@@ -4,37 +4,27 @@ import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { CardProps } from '../components/Card';
 import { Hint } from '../components/Hint';
-const baseURL = 'https://rickandmortyapi.com/api/character/';
+import { Loading } from '../components/Loading';
+const BASE_URL = 'https://rickandmortyapi.com/api/character/';
 
 const Main = () => {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null | boolean>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const requestData = useCallback(async (search: string) => {
     try {
       setError(null);
       setLoading(true);
-      const url = `${baseURL}${search}`;
+      const url = `${BASE_URL}${search}`;
       const res = await axios.get(url);
       const { results } = res.data;
-      const cards = results.map(
-        (item: { name: string; image: string; status: string; species: string }) => {
-          const { name, image, status, species } = item;
-          return {
-            icon: image,
-            title: name,
-            desc: `${species} (${status})`,
-            link: '',
-            likes: 30,
-            views: 40,
-          };
-        }
-      );
-      setCards(cards);
+      const cards = results.map((item: CardProps) => ({ ...item }));
+      if (res.status != 400) setCards(cards);
       setLoading(false);
     } catch (err) {
       setError(err.message);
+      setLoading(false);
     }
   }, []);
 
@@ -45,15 +35,15 @@ const Main = () => {
     [requestData]
   );
 
-  // useEffect(() => {
-  //   requestData('book');
-  // }, [requestData]);
+  useEffect(() => {
+    requestData('');
+  }, [requestData]);
 
   return (
     <div className="page" id="main-page">
       <SearchBar setSearch={setSearch} />
       {loading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <div className="cards">
           {cards.map((card, idx) => (
@@ -63,8 +53,8 @@ const Main = () => {
       )}
       {error && (
         <Hint
-          closeHint={setError}
-          messages={['Oooops!', "We didn't find anything with your reques!", error.toString()]}
+          closeHint={() => setError(null)}
+          messages={['Oooops!', "We didn't find anything with your request!", error.toString()]}
         />
       )}
     </div>

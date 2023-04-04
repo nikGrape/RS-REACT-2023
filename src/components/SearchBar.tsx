@@ -92,7 +92,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
 
       {showHint && (
         <Hint
-          closeHint={setShowHint}
+          closeHint={() => setShowHint(false)}
           messages={[
             'Supported search (space separated):',
             'name dead/alive female/male human/alien/cronenberg/humanoid',
