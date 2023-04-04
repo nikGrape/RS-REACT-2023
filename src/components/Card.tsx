@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faEye } from '@fortawesome/free-solid-svg-icons';
 
-interface CardProps {
+export interface CardProps {
   icon: string;
   title: string;
   desc: string;
@@ -18,7 +18,7 @@ const Card = (props: CardProps) => {
   });
 
   const { likes, views } = state;
-  const { icon, title, desc, link } = props;
+  const { icon, title, desc } = props;
 
   const addLike = () => {
     setState((state) => ({
@@ -29,14 +29,7 @@ const Card = (props: CardProps) => {
 
   return (
     <div className="card" data-testid="card">
-      <a href={link} rel="noreferrer" target="_blank">
-        <img
-          className="card-icon"
-          id={`${title.toLocaleLowerCase()}-svg`}
-          src={icon}
-          alt={`${title} icon`}
-        />
-      </a>
+      <img className="card-icon" src={icon} alt={`${title} icon`} />
       <h4 className="card-title">{title}</h4>
       <p role="definition" className="card-desc">
         {desc}

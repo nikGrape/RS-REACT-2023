@@ -188,10 +188,28 @@ h3 {
 }
 /** SEARCH BAR  */
 
+.search-bar-set {
+  /* border: 1px solid black; */
+  align-self: flex-end;
+  width: 315px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-bar-set button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-content: center;
+  outline: none;
+  font-weight: 800;
+  font-size: large;
+}
+
 #search-bar {
   display: flex;
-  align-self: flex-end;
-  position: fixed;
+  justify-self: flex-start;
   justify-content: space-around;
   align-items: center;
   border: 1px dashed var(--serch-bar-border);
@@ -208,7 +226,6 @@ h3 {
 #search-input {
   border-radius: 20px;
   border: transparent;
-  user-select: none;
   outline: none;
   background-color: inherit;
   color: inherit;
@@ -260,12 +277,15 @@ div {
   border-radius: 10px;
 }
 
-.card a {
-  height: 40%;
-  justify-self: flex-start;
-}
 .card-icon {
-  height: 100%;
+  height: 50%;
+  justify-self: flex-start;
+  border-radius: 50%;
+}
+
+.card-icon:hover {
+  transition: all 0.6s ease-out;
+  transform: scale(1.08);
 }
 
 .card p,
@@ -277,7 +297,6 @@ span {
 .card-title:hover {
   transform: translateY(-1px);
   transition: all 0.3s ease-out;
-  text-shadow: 2px 6px 15px #646cff;
 }
 
 .card div {
@@ -578,4 +597,53 @@ button[type='submit'] {
 .user-card img {
   width: 200px;
   border: none;
+}
+
+/** HINT & MODAL WINDOW */
+
+.blur {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  opacity: 0.9;
+  position: fixed;
+  z-index: 5000;
+  top: 0px;
+  left: 0px;
+  display: grid;
+  place-content: center;
+}
+
+.hint {
+  width: 50%;
+  height: auto;
+  padding: 45px 10px 45px 10px;
+  left: 25%;
+  top: 30%;
+  background-color: var(--cards-color);
+  display: grid;
+  place-content: center;
+  z-index: 99999;
+  border-radius: 15px;
+  opacity: (0.5);
+  text-align: center;
+  font-size: larger;
+  font-weight: 600;
+  position: fixed;
+  opacity: 1;
+  animation: appear 0.4s ease-out forwards;
+}
+
+.cross {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  top: 8px;
+  right: 8px;
+  font-size: small;
+  text-align: center;
+  display: grid;
+  place-content: center;
+  outline: none;
+  background-color: var(--error-color);
 }

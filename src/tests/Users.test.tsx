@@ -33,6 +33,7 @@ describe('Form', () => {
       await userEvent.selectOptions(getByRole('combobox'), 'Blue');
     });
 
+    expect((getByText('Blue') as HTMLOptionElement).selected).toBeTruthy();
     await act(async () => {
       fireEvent.click(getByRole('button'));
     });
@@ -40,7 +41,7 @@ describe('Form', () => {
     expect(queryByText(/Choose a card color/i)).not.toBeInTheDocument();
   });
 
-  it('card creation, succes message', async () => {
+  it('card creation (female), succes message', async () => {
     global.URL.createObjectURL = vi.fn();
     const { queryByText, getByRole, getByText, getByPlaceholderText, getByLabelText } = render(
       <UsersPage></UsersPage>

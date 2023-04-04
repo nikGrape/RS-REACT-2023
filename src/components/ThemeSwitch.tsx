@@ -4,7 +4,7 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const ThemeSwitch = () => {
-  const [theme, setState] = useState('light');
+  const [theme, setTheme] = useState('light');
 
   const dark = `body {
 		--color: rgba(255, 255, 255, 0.87);
@@ -31,9 +31,9 @@ const ThemeSwitch = () => {
 
   const handleClick = () => {
     if (theme == 'light') {
-      setState('dark');
+      setTheme('dark');
     } else {
-      setState('light');
+      setTheme('light');
     }
   };
 

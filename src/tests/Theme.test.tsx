@@ -18,5 +18,11 @@ describe('Theme', () => {
     });
 
     expect(themeSwitch.firstChild).toHaveClass('fa-moon');
+
+    await act(async () => {
+      await userEvent.click(themeSwitch);
+    });
+
+    expect(themeSwitch.firstChild).toHaveClass('fa-sun');
   });
 });

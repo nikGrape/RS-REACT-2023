@@ -27,13 +27,11 @@ const Users = () => {
   };
 
   const addUser: (user: User) => void = async (user) => {
-    if (user) {
-      successMessage();
-      setState((state) => ({
-        ...state,
-        users: [...state.users, user],
-      }));
-    }
+    successMessage();
+    setState((state) => ({
+      ...state,
+      users: [...state.users, user],
+    }));
   };
 
   return (

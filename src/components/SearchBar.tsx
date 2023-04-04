@@ -1,35 +1,105 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Hint } from './Hint';
 
-const SearchBar = () => {
-  const [search, setSearch] = useState(localStorage.getItem('search') || '');
+interface SearchBarProps {
+  setSearch: (search: string) => void;
+}
 
-  const searchRef = useRef<string>('');
+interface Input {
+  search: string;
+}
 
-  useEffect(() => {
-    searchRef.current = search;
-  }, [search]);
+enum gender {
+  'female',
+  'male',
+}
 
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('search', searchRef.current);
-    };
-  }, []);
+enum status {
+  'dead',
+  'alive',
+}
+
+enum species {
+  'human',
+  'alien',
+  'cronenberg',
+  'humanoid',
+}
+
+const SearchBar = ({ setSearch }: SearchBarProps) => {
+  const [showHint, setShowHint] = useState(false);
+
+  const { register, handleSubmit } = useForm<Input>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
+
+  const onSubmit: SubmitHandler<Input> = (data) => {
+    setSearch(validate(data.search));
+  };
+
+  const validate = (value: string) => {
+    let isNamePresent = false;
+
+    const res = value
+      .trim()
+      .toLocaleLowerCase()
+      .split(/\s+/)
+      .map((v) => {
+        if (v == '') return '';
+        if (Object.keys(gender).includes(v)) return `gender=${v}`;
+        if (Object.keys(status).includes(v)) return `status=${v}`;
+        if (Object.keys(species).includes(v)) return `species=${v}`;
+        if (isNamePresent) return 'error';
+        isNamePresent = true;
+        return `name=${v}`;
+      });
+
+    if (res.includes('error')) return 'error';
+    let query = res.join('&');
+    if (query.length > 0) query = '?' + query;
+    return query;
+  };
 
   return (
-    <div id="search-bar">
-      <FontAwesomeIcon icon={faMagnifyingGlass} />
-      <input
-        type="text"
-        name="search"
-        id="search-input"
-        placeholder="search bar"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
+    <div className="search-bar-set">
+      <div id="search-bar">
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="search bar"
+            {...register('search', {
+              validate: (value) => {
+                if (validate(value) == 'error') {
+                  setShowHint(true);
+                  return false;
+                }
+                return true;
+              },
+            })}
+          />
+          <button type="submit" style={{ display: 'none' }} />
+        </form>
+      </div>
+      <button type="button" onClick={() => setShowHint(true)}>
+        ?
+      </button>
+
+      {showHint && (
+        <Hint
+          closeHint={setShowHint}
+          messages={[
+            'Supported search (space separated):',
+            'name dead/alive female/male human/alien/cronenberg/humanoid',
+            'ex: rick male human alive',
+          ]}
+        />
+      )}
     </div>
   );
 };
