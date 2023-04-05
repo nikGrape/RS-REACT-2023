@@ -6,6 +6,12 @@ interface ModalCardProps extends CardProps {
 
 export const ModalCard = (props: ModalCardProps) => {
   const { name, status, species, type, gender, image, origin, location, hideModalCard } = props;
+
+  const episodes = props.episode.map((ep) => {
+    const epNum = ep.match(/\d+$/);
+    return epNum ? epNum[0] : 0;
+  });
+
   return (
     <div>
       <div className="modal-window">
@@ -20,6 +26,7 @@ export const ModalCard = (props: ModalCardProps) => {
         {type && <p>{`Type: ${type}`}</p>}
         <p>{`Origin: ${origin.name}`}</p>
         <p>{`Location: ${location.name}`}</p>
+        <p>Episodes: [ {episodes.join(', ')} ]</p>
       </div>
       <div className="blur" onClick={() => hideModalCard(false)}></div>
     </div>

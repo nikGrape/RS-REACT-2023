@@ -97,6 +97,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
             'Supported search (space separated):',
             'name dead/alive female/male human/alien/cronenberg/humanoid',
             'ex: rick male human alive',
+            'ex: morty female',
           ]}
         />
       )}

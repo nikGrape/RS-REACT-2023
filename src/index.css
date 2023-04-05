@@ -677,3 +677,11 @@ button[type='submit'] {
   width: 300px;
   max-width: 90%;
 }
+
+.back-next-buttons {
+  width: 60%;
+  padding-bottom: 40px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}

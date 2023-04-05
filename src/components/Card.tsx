@@ -12,6 +12,7 @@ export interface CardProps {
   origin: { name: string; url: string };
   location: { name: string; url: string };
   image: string;
+  episode: string[];
 }
 
 const Card = (props: CardProps) => {
