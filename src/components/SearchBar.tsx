@@ -29,7 +29,7 @@ enum species {
   'humanoid',
 }
 
-const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
+export const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
 
 const SearchBar = ({ setSearch }: SearchBarProps) => {
   const [showHint, setShowHint] = useState(false);
@@ -81,8 +81,6 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
             placeholder="search bar"
             {...register('search', {
               validate: (value) => {
-                console.log('validation worked');
-
                 if (validate(value) == 'error') {
                   setShowHint(true);
                   return false;
