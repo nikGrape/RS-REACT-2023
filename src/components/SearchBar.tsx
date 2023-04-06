@@ -29,12 +29,17 @@ enum species {
   'humanoid',
 }
 
+const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
+
 const SearchBar = ({ setSearch }: SearchBarProps) => {
   const [showHint, setShowHint] = useState(false);
 
   const { register, handleSubmit } = useForm<Input>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
+    defaultValues: {
+      search: localStorage.getItem(LS_SEARCH_BAR_VALUE_KEY) || '',
+    },
   });
 
   const onSubmit: SubmitHandler<Input> = (data) => {
@@ -61,6 +66,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
     if (res.includes('error')) return 'error';
     let query = res.join('&');
     if (query.length > 0) query = '?' + query;
+    localStorage.setItem(LS_SEARCH_BAR_VALUE_KEY, value);
     return query;
   };
 

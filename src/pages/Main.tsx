@@ -6,6 +6,7 @@ import { CardProps } from '../components/Card';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
 export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
+export const LS_SEARCH_QUERY_KEY = 'search#0q2h2nl1kj3123lw9kzjee';
 
 const Main = () => {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -30,6 +31,7 @@ const Main = () => {
       const cards = results.map((item: CardProps) => ({ ...item }));
       if (res.status != 400) setCards(cards);
       setLoading(false);
+      localStorage.setItem(LS_SEARCH_QUERY_KEY, search);
     } catch (err) {
       setError(err.message);
       setLoading(false);
@@ -47,7 +49,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    requestData('');
+    requestData(localStorage.getItem(LS_SEARCH_QUERY_KEY) || '');
   }, [requestData]);
 
   return (
