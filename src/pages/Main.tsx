@@ -1,63 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
-import { CardProps } from '../components/Card';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
+import useCallAPI from '../CustomHooks/useCallAPI';
 export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
 export const LS_SEARCH_QUERY_KEY = 'search#0q2h2nl1kj3123lw9kzjee';
 
 const Main = () => {
-  const [cards, setCards] = useState<CardProps[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [TotalNumberOfPages, setTotalNumberOfPages] = useState<number>(0);
-  const [currentPageIndex, setCurrentPageIndex] = useState<number>(1);
-  const [prevPage, setPrevPage] = useState<string | null>(null);
-  const [nextPage, setNextPage] = useState<string | null>(null);
+  const [url, setUrl] = useState<string>(localStorage.getItem(LS_SEARCH_QUERY_KEY) || '');
 
-  const requestData = useCallback(async (search: string) => {
-    try {
-      setError(null);
-      setLoading(true);
-      setCurrentPageIndex(1);
-      const url = `${BASE_URL}${search}`;
-      const res = await axios.get(url);
-      const { results } = res.data;
-      setNextPage(res.data.info.next);
-      setPrevPage(res.data.info.prev);
-      setTotalNumberOfPages(res.data.info.pages);
-      const cards = results.map((item: CardProps) => ({ ...item }));
-      if (res.status != 400) setCards(cards);
-      setLoading(false);
-      localStorage.setItem(LS_SEARCH_QUERY_KEY, search);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  }, []);
-
-  const GoToPage = useCallback(
-    (search: string | null) => {
-      if (!search) return;
-      let page = '1';
-      let tpm = search.match(/page=\d+/);
-      if (tpm && tpm[0]) tpm = tpm[0].match(/\d+/);
-      if (tpm && tpm[0]) page = tpm[0];
-      requestData('?' + search.split('?')[1]);
-      setCurrentPageIndex(parseInt(page));
-    },
-    [requestData]
-  );
-
-  useEffect(() => {
-    requestData(localStorage.getItem(LS_SEARCH_QUERY_KEY) || '');
-  }, [requestData]);
+  const {
+    cards,
+    loading,
+    error,
+    setError,
+    TotalNumberOfPages,
+    currentPageIndex,
+    prevPageUrl,
+    nextPageUrl,
+  } = useCallAPI(url);
 
   return (
     <div className="page" id="main-page">
-      <SearchBar setSearch={requestData} />
+      <SearchBar setSearch={setUrl} />
       {loading ? (
         <Loading />
       ) : (
@@ -69,16 +35,26 @@ const Main = () => {
       )}
       {!loading && (
         <div className="prev-next-buttons">
-          <button type="button" onClick={() => GoToPage(prevPage)}>
+          <button
+            type="button"
+            onClick={() => {
+              if (prevPageUrl) setUrl(prevPageUrl);
+            }}
+          >
             prev
           </button>
           <div>{`${currentPageIndex}/${TotalNumberOfPages}`}</div>
-          <button type="button" onClick={() => GoToPage(nextPage)}>
+          <button
+            type="button"
+            onClick={() => {
+              if (nextPageUrl) setUrl(nextPageUrl);
+            }}
+          >
             next
           </button>
         </div>
       )}
-      {error && (
+      {error && error != 'canceled' && (
         <Hint
           closeHint={() => setError(null)}
           messages={['Oooops!', "We didn't find anything with your request!", error.toString()]}

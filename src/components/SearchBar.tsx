@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Hint } from './Hint';
+import { BASE_URL } from '../pages/Main';
 
 interface SearchBarProps {
   setSearch: (search: string) => void;
@@ -48,7 +49,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
   });
 
   const onSubmit: SubmitHandler<Input> = (data) => {
-    setSearch(validate(data.search));
+    setSearch(BASE_URL + validate(data.search));
   };
 
   const validate = (value: string) => {

@@ -4,7 +4,18 @@ import axios from 'axios';
 
 import { LS_SEARCH_QUERY_KEY } from '../pages/Main';
 
-export default function (url: string) {
+type API = {
+  cards: CardProps[];
+  loading: boolean;
+  error: string | null;
+  TotalNumberOfPages: number;
+  currentPageIndex: number;
+  prevPageUrl: string | null;
+  nextPageUrl: string | null;
+  setError: (error: string | null) => void;
+};
+
+export default function (url: string): API {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,5 +52,14 @@ export default function (url: string) {
     };
   }, [url]);
 
-  return { cards, loading, error, TotalNumberOfPages, currentPageIndex, prevPageUrl, nextPageUrl };
+  return {
+    cards,
+    loading,
+    error,
+    setError,
+    TotalNumberOfPages,
+    currentPageIndex,
+    prevPageUrl,
+    nextPageUrl,
+  };
 }
