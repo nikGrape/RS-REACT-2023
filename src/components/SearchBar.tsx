@@ -27,6 +27,11 @@ enum species {
   'alien',
   'cronenberg',
   'humanoid',
+  'animal',
+  'creature',
+  'poopybutthole',
+  'robot',
+  'disease',
 }
 
 export const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
@@ -101,7 +106,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
           closeHint={() => setShowHint(false)}
           messages={[
             'Supported search (space separated):',
-            'name dead/alive female/male human/alien/cronenberg/humanoid',
+            'name dead/alive female/male human/alien/cronenberg/humanoid/animal',
             'ex: rick male human alive',
             'ex: morty female',
           ]}
