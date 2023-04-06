@@ -75,6 +75,8 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
             placeholder="search bar"
             {...register('search', {
               validate: (value) => {
+                console.log('validation worked');
+
                 if (validate(value) == 'error') {
                   setShowHint(true);
                   return false;
@@ -83,7 +85,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
               },
             })}
           />
-          <button type="submit" style={{ display: 'none' }} />
+          <button type="submit" data-testid="search-submit" style={{ display: 'none' }} />
         </form>
       </div>
       <button type="button" onClick={() => setShowHint(true)}>

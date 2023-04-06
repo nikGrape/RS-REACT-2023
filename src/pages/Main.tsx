@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 import { CardProps } from '../components/Card';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
-const BASE_URL = 'https://rickandmortyapi.com/api/character/';
+export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
 
 const Main = () => {
   const [cards, setCards] = useState<CardProps[]>([]);
@@ -63,9 +63,9 @@ const Main = () => {
         </div>
       )}
       {!loading && (
-        <div className="back-next-buttons">
+        <div className="prev-next-buttons">
           <button type="button" onClick={() => GoToPage(prevPage)}>
-            back
+            prev
           </button>
           <div>{`${currentPage}/${pages}`}</div>
           <button type="button" onClick={() => GoToPage(nextPage)}>

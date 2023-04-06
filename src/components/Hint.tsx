@@ -16,7 +16,7 @@ export const Hint = ({ messages, closeHint }: HintProps) => {
           <p key={msg}>{msg}</p>
         ))}
       </div>
-      <div className="blur" onClick={() => closeHint()}></div>
+      <div className="blur" data-testid="blur-window" onClick={() => closeHint()}></div>
     </>
   );
 };

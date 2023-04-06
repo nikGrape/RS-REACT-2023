@@ -28,7 +28,7 @@ export const ModalCard = (props: ModalCardProps) => {
         <p>{`Location: ${location.name}`}</p>
         <p>Episodes: [ {episodes.join(', ')} ]</p>
       </div>
-      <div className="blur" onClick={() => hideModalCard(false)}></div>
+      <div className="blur" data-testid="blur-window" onClick={() => hideModalCard(false)}></div>
     </div>
   );
 };

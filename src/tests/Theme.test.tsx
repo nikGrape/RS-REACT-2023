@@ -9,7 +9,7 @@ describe('Theme', () => {
   it('Shwitches theme on click', async () => {
     render(<AppWrapper />);
 
-    const themeSwitch = screen.getByRole('button');
+    const themeSwitch = screen.getAllByRole('button')[0];
 
     expect(themeSwitch.firstChild).toHaveClass('fa-sun');
 

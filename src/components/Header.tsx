@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+type keyType = '/' | '/users' | '/about';
+
 const Header = () => {
-  const [activeLink, setActiveLink] = useState('/');
+  const [activeLink, setActiveLink] = useState<keyType>('/');
 
-  const links = new Map<string, string[]>();
-  links.set('/', ['Main', 'Rick and Morty']);
-  links.set('/users', ['Users', 'Sign Up a new user']);
-  links.set('/about', ['About Us', 'This is what it is all about']);
+  const links = {
+    '/': ['Main', 'Rick and Morty'],
+    '/users': ['Users', 'Sign Up a new user'],
+    '/about': ['About Us', 'This is what it is all about'],
+  };
 
-  const getHeader: (key: string) => string[] = (key) => {
-    const res = links.get(key);
-    if (res) return res;
-    return ['', ''];
+  const getHeader: (key: keyType) => string[] = (key) => {
+    return links[key];
   };
 
   return (
@@ -20,14 +21,14 @@ const Header = () => {
       <h1>{getHeader(activeLink)[0]}</h1>
       <h3>{getHeader(activeLink)[1]}</h3>
       <div id="links">
-        {[...links.keys()].map((link) => (
+        {[...Object.keys(links)].map((link) => (
           <NavLink
             to={link}
             key={link}
             className={({ isActive }) => (isActive ? 'active-link' : '')}
-            onClick={() => setActiveLink(link)}
+            onClick={() => setActiveLink(link as keyType)}
           >
-            {getHeader(link)[0]}
+            {getHeader(link as keyType)[0]}
           </NavLink>
         ))}
       </div>
