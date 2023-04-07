@@ -15,6 +15,15 @@ type API = {
   setError: (error: string | null) => void;
 };
 
+const extractCurrentPageIndex = (url: string | null): number => {
+  if (!url) return 1;
+  let page = '1';
+  let tpm = url.match(/page=\d+/);
+  if (tpm && tpm[0]) tpm = tpm[0].match(/\d+/);
+  if (tpm && tpm[0]) page = tpm[0];
+  return parseInt(page);
+};
+
 export default function (url: string): API {
   const [cards, setCards] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -30,7 +39,7 @@ export default function (url: string): API {
       try {
         setError(null);
         setLoading(true);
-        setCurrentPageIndex(1);
+        setCurrentPageIndex(extractCurrentPageIndex(url));
         const res = await axios.get(url, { signal: controller.signal });
         const { results } = res.data;
         setNextPageUrl(res.data.info.next);
