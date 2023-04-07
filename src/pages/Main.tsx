@@ -4,11 +4,11 @@ import SearchBar from '../components/SearchBar';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
 import useCallAPI from '../CustomHooks/useCallAPI';
-export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
+export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 export const LS_SEARCH_QUERY_KEY = 'search#0q2h2nl1kj3123lw9kzjee';
 
 const Main = () => {
-  const [url, setUrl] = useState<string>(localStorage.getItem(LS_SEARCH_QUERY_KEY) || '');
+  const [url, setUrl] = useState<string>(localStorage.getItem(LS_SEARCH_QUERY_KEY) || BASE_URL);
 
   const {
     cards,
@@ -38,6 +38,7 @@ const Main = () => {
           <button
             type="button"
             onClick={() => {
+              console.log('PAGE1', prevPageUrl);
               if (prevPageUrl) setUrl(prevPageUrl);
             }}
           >
@@ -47,6 +48,7 @@ const Main = () => {
           <button
             type="button"
             onClick={() => {
+              console.log('PAGE2', nextPageUrl);
               if (nextPageUrl) setUrl(nextPageUrl);
             }}
           >

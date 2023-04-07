@@ -10,6 +10,7 @@ import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 
 vi.mock('axios');
+const controller = new AbortController();
 
 describe('Main', () => {
   it('render the list of all cards and call API', async () => {
@@ -21,7 +22,7 @@ describe('Main', () => {
     cardElements.map((card) => expect(card).toHaveClass('card'));
 
     expect(get).toHaveBeenCalledTimes(1);
-    expect(get).toHaveBeenCalledWith(BASE_URL);
+    expect(get).toHaveBeenCalledWith(BASE_URL, { signal: controller.signal });
   });
 
   it('calls api on next/prev page button click', async () => {
@@ -30,22 +31,21 @@ describe('Main', () => {
     render(<Main />);
     expect(get).toHaveBeenCalledTimes(2);
 
-    const next = await screen.findByText(/next/);
+    expect(get).toHaveBeenCalledWith(`${BASE_URL}`, { signal: controller.signal });
+
     const prev = await screen.findByText(/prev/);
-
-    await act(async () => {
-      await userEvent.click(next);
-    });
-
-    expect(get).toHaveBeenCalledTimes(3);
-    expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=3`);
-
     await act(async () => {
       await userEvent.click(prev);
     });
+    expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=2`, { signal: controller.signal });
+    expect(get).toHaveBeenCalledTimes(3);
 
+    const next = await screen.findByText(/next/);
+    await act(async () => {
+      await userEvent.click(next);
+    });
     expect(get).toHaveBeenCalledTimes(4);
-    expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=2`);
+    expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=3`, { signal: controller.signal });
   });
 
   it('show error on 404 response', async () => {
