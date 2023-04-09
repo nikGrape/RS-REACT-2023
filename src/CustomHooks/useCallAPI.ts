@@ -50,7 +50,7 @@ export default function (url: string): API {
         setLoading(false);
         localStorage.setItem(LS_SEARCH_QUERY_KEY, url);
       } catch (err) {
-        setError(err.message);
+        setError((err as Error).message);
         setLoading(false);
       }
     };
