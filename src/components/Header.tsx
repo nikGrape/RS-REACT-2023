@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
-type keyType = '/' | '/users' | '/about';
+import React, { useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectPath, setPath } from '../features/path';
 
 const Header = () => {
-  const [activeLink, setActiveLink] = useState<keyType>('/');
+  const { path, header } = useSelector(selectPath);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
-  const links = {
-    '/': ['Main', 'Rick and Morty'],
-    '/users': ['Users', 'Sign Up a new user'],
-    '/about': ['About Us', 'This is what it is all about'],
-  };
-
-  const getHeader: (key: keyType) => string[] = (key) => {
-    return links[key];
-  };
+  useEffect(() => {
+    const pathname = location.pathname;
+    switch (pathname) {
+      case '/users':
+        dispatch(setPath({ path: 'Users', header: 'Sign Up a new user' }));
+        break;
+      case '/about':
+        dispatch(setPath({ path: 'About Us', header: 'This is what it is all about' }));
+        break;
+      default:
+        dispatch(setPath({ path: 'Main', header: 'Rick and Morty' }));
+    }
+  }, [location, dispatch]);
 
   return (
     <div id="app-header">
-      <h1>{getHeader(activeLink)[0]}</h1>
-      <h3>{getHeader(activeLink)[1]}</h3>
+      <h1>{path}</h1>
+      <h3>{header}</h3>
       <div id="links">
-        {[...Object.keys(links)].map((link) => (
-          <NavLink
-            to={link}
-            key={link}
-            className={({ isActive }) => (isActive ? 'active-link' : '')}
-            onClick={() => setActiveLink(link as keyType)}
-          >
-            {getHeader(link as keyType)[0]}
-          </NavLink>
-        ))}
+        <NavLink to={'/'} className={({ isActive }) => (isActive ? 'active-link' : '')}>
+          Home
+        </NavLink>
+        <NavLink to={'/users'} className={({ isActive }) => (isActive ? 'active-link' : '')}>
+          Users
+        </NavLink>
+        <NavLink to={'/about'} className={({ isActive }) => (isActive ? 'active-link' : '')}>
+          About
+        </NavLink>
       </div>
     </div>
   );

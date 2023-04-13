@@ -1,45 +1,33 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import FormHook, { User } from '../components/Form';
 import UserCard from '../components/UserCard';
-
-interface UsersState {
-  users: User[];
-  success: boolean;
-}
+import { selectUsers, addUser as addUserToGlobalStore } from '../features/users';
 
 const Users = () => {
-  const initialState: UsersState = {
-    users: [],
-    success: false,
-  };
-
-  const [state, setState] = useState<UsersState>(initialState);
+  const [success, setSuccess] = useState<boolean>(false);
+  const users = useSelector(selectUsers);
+  const dispatch = useDispatch();
 
   const successMessage = () => {
-    setState((state) => ({
-      ...state,
-      success: true,
-    }));
+    setSuccess(true);
     setTimeout(() => {
-      setState((state) => ({ ...state, success: false }));
+      setSuccess(false);
     }, 3500);
   };
 
   const addUser: (user: User) => void = async (user) => {
     successMessage();
-    setState((state) => ({
-      ...state,
-      users: [...state.users, user],
-    }));
+    dispatch(addUserToGlobalStore(user));
   };
 
   return (
     <div className="page" id="user-page">
-      {state.success && <div className="success-message">The user was successfully added</div>}
+      {success && <div className="success-message">The user was successfully added</div>}
       <FormHook addUser={addUser} />
       <div className="cards user-cards">
-        {state.users.map((user, i) => (
+        {users.map((user, i) => (
           <UserCard {...user} key={i + user.lastname} />
         ))}
       </div>

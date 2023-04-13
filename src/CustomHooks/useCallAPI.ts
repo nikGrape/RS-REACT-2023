@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { CardProps } from '../components/Card';
 import axios from 'axios';
 
-import { LS_SEARCH_QUERY_KEY } from '../pages/Main';
-
 type API = {
   cards: CardProps[];
   loading: boolean;
@@ -48,7 +46,6 @@ export default function (url: string): API {
         const cards = results.map((item: CardProps) => ({ ...item }));
         if (res.status != 400) setCards(cards);
         setLoading(false);
-        localStorage.setItem(LS_SEARCH_QUERY_KEY, url);
       } catch (err) {
         setError((err as Error).message);
         setLoading(false);

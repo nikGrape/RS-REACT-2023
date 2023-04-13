@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
 import useCallAPI from '../CustomHooks/useCallAPI';
+import { selectSearch, setUrl } from '../features/search';
 export const BASE_URL = 'https://rickandmortyapi.com/api/character';
-export const LS_SEARCH_QUERY_KEY = 'search#0q2h2nl1kj3123lw9kzjee';
 
 const Main = () => {
-  const [url, setUrl] = useState<string>(localStorage.getItem(LS_SEARCH_QUERY_KEY) || BASE_URL);
+  const { url } = useSelector(selectSearch);
+  const dispatch = useDispatch();
 
   const {
     cards,
@@ -23,7 +25,7 @@ const Main = () => {
 
   return (
     <div className="page" id="main-page">
-      <SearchBar setSearch={setUrl} />
+      <SearchBar />
       {loading ? (
         <Loading />
       ) : (
@@ -38,8 +40,7 @@ const Main = () => {
           <button
             type="button"
             onClick={() => {
-              console.log('PAGE1', prevPageUrl);
-              if (prevPageUrl) setUrl(prevPageUrl);
+              if (prevPageUrl) dispatch(setUrl(prevPageUrl));
             }}
           >
             prev
@@ -48,8 +49,7 @@ const Main = () => {
           <button
             type="button"
             onClick={() => {
-              console.log('PAGE2', nextPageUrl);
-              if (nextPageUrl) setUrl(nextPageUrl);
+              if (nextPageUrl) dispatch(setUrl(nextPageUrl));
             }}
           >
             next

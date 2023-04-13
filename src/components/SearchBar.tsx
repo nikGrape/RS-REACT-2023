@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Hint } from './Hint';
 import { BASE_URL } from '../pages/Main';
-
-interface SearchBarProps {
-  setSearch: (search: string) => void;
-}
+import { selectSearch, setUrl, setSearchText } from '../features/search';
 
 interface Input {
   search: string;
@@ -37,19 +36,21 @@ enum species {
 
 export const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
 
-const SearchBar = ({ setSearch }: SearchBarProps) => {
+const SearchBar = () => {
   const [showHint, setShowHint] = useState(false);
+  const { searchText } = useSelector(selectSearch);
+  const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm<Input>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     defaultValues: {
-      search: localStorage.getItem(LS_SEARCH_BAR_VALUE_KEY) || '',
+      search: searchText,
     },
   });
 
   const onSubmit: SubmitHandler<Input> = (data) => {
-    setSearch(BASE_URL + validate(data.search));
+    dispatch(setUrl(BASE_URL + validate(data.search)));
   };
 
   const validate = (value: string) => {
@@ -72,7 +73,7 @@ const SearchBar = ({ setSearch }: SearchBarProps) => {
     if (res.includes('error')) return 'error';
     let query = res.join('&');
     if (query.length > 0) query = '?' + query;
-    localStorage.setItem(LS_SEARCH_BAR_VALUE_KEY, value);
+    dispatch(setSearchText(value));
     return query;
   };
 

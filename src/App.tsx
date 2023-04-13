@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import Main from './pages/Main';
 import Users from './pages/Users';
@@ -34,9 +37,11 @@ export const App = () => {
 export class AppWrapper extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
