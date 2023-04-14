@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CardProps } from '../components/Card';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 type API = {
@@ -13,7 +14,7 @@ type API = {
   setError: (error: string | null) => void;
 };
 
-const extractCurrentPageIndex = (url: string | null): number => {
+export const extractCurrentPageIndex = (url: string | null): number => {
   if (!url) return 1;
   let page = '1';
   let tpm = url.match(/page=\d+/);
@@ -31,9 +32,12 @@ export default function (url: string): API {
   const [prevPageUrl, setPrevPageUrl] = useState<string | null>(null);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>(null);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const controller = new AbortController();
     const callAPI = async () => {
+      console.log('api has been called!');
       try {
         setError(null);
         setLoading(true);
@@ -44,7 +48,7 @@ export default function (url: string): API {
         setPrevPageUrl(res.data.info.prev);
         setTotalNumberOfPages(res.data.info.pages);
         const cards = results.map((item: CardProps) => ({ ...item }));
-        if (res.status != 400) setCards(cards);
+        // if (res.status != 400) dispatch(setSearchResult(cards));
         setLoading(false);
       } catch (err) {
         setError((err as Error).message);
@@ -56,7 +60,7 @@ export default function (url: string): API {
     return () => {
       controller.abort();
     };
-  }, [url]);
+  }, [url, dispatch]);
 
   return {
     cards,

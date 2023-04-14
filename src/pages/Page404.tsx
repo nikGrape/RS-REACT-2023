@@ -1,20 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setShowHeader } from '../features/app';
 
-interface Page404Props {
-  showHeader: (showHeader: boolean) => void;
-}
-
-const Page404 = ({ showHeader }: Page404Props) => {
-  const showHeaderRef = useRef(showHeader);
+const Page404 = () => {
+  const dispatch = useDispatch();
+  // const showHeaderRef = useRef(showHeader);
 
   useEffect(() => {
-    const showHeader = showHeaderRef.current;
-    showHeader(false);
+    // const showHeader = showHeaderRef.current;
+    dispatch(setShowHeader(false));
     return () => {
-      showHeader(true);
+      dispatch(setShowHeader(true));
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="page-not-found" className="page">

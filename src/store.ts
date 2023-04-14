@@ -1,19 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import users from './features/users';
 import search from './features/search';
-import cards from './features/cards';
-import path from './features/path';
+import app from './features/app';
 
 const store = configureStore({
   reducer: {
     users,
     search,
-    cards,
-    path,
+    app,
   },
 });
 
-export default store;
-
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
+export type AppThunkDispatch = ThunkDispatch<RootState, null, AnyAction>;
+
+export default store;

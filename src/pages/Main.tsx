@@ -4,24 +4,12 @@ import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
-import useCallAPI from '../CustomHooks/useCallAPI';
-import { selectSearch, setUrl } from '../features/search';
-export const BASE_URL = 'https://rickandmortyapi.com/api/character';
+import { selectSearch, setUrl, setError } from '../features/search';
 
 const Main = () => {
-  const { url } = useSelector(selectSearch);
+  const { cards, loading, error, totalNumberOfPages, currentPageIndex, prevPageUrl, nextPageUrl } =
+    useSelector(selectSearch);
   const dispatch = useDispatch();
-
-  const {
-    cards,
-    loading,
-    error,
-    setError,
-    TotalNumberOfPages,
-    currentPageIndex,
-    prevPageUrl,
-    nextPageUrl,
-  } = useCallAPI(url);
 
   return (
     <div className="page" id="main-page">
@@ -45,7 +33,7 @@ const Main = () => {
           >
             prev
           </button>
-          <div>{`${currentPageIndex}/${TotalNumberOfPages}`}</div>
+          <div>{`${currentPageIndex}/${totalNumberOfPages}`}</div>
           <button
             type="button"
             onClick={() => {
@@ -58,7 +46,7 @@ const Main = () => {
       )}
       {error && error != 'canceled' && (
         <Hint
-          closeHint={() => setError(null)}
+          closeHint={() => dispatch(setError(null))}
           messages={['Oooops!', "We didn't find anything with your request!", error.toString()]}
         />
       )}

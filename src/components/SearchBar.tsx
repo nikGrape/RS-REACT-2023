@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { Hint } from './Hint';
-import { BASE_URL } from '../pages/Main';
-import { selectSearch, setUrl, setSearchText } from '../features/search';
+import { selectSearch, setUrl, setSearchText, callApiAndSetSearchResult } from '../features/search';
+import { AppThunkDispatch } from '../store';
+
+const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 interface Input {
   search: string;
@@ -39,7 +41,7 @@ export const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
 const SearchBar = () => {
   const [showHint, setShowHint] = useState(false);
   const { searchText } = useSelector(selectSearch);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppThunkDispatch>();
 
   const { register, handleSubmit } = useForm<Input>({
     mode: 'onSubmit',
@@ -50,7 +52,9 @@ const SearchBar = () => {
   });
 
   const onSubmit: SubmitHandler<Input> = (data) => {
-    dispatch(setUrl(BASE_URL + validate(data.search)));
+    const url = BASE_URL + validate(data.search);
+    dispatch(setUrl(url));
+    dispatch(callApiAndSetSearchResult(url));
   };
 
   const validate = (value: string) => {

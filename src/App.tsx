@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -11,37 +11,27 @@ import About from './pages/About';
 import Header from './components/Header';
 import ThemeSwitch from './components/ThemeSwitch';
 
-export const App = () => {
-  const [state, setState] = useState({
-    showHeader: true,
-  });
-
-  const showHeader = useCallback((showHeader: boolean): void => {
-    setState({ showHeader });
-  }, []);
-
-  return (
-    <Fragment>
-      {state.showHeader ? <Header /> : <Fragment />}
-      <ThemeSwitch />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<Page404 showHeader={showHeader} />} />
-      </Routes>
-    </Fragment>
-  );
-};
+export const App = () => (
+  <Fragment>
+    <Header />
+    <ThemeSwitch />
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/users" element={<Users />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<Page404 />} />
+    </Routes>
+  </Fragment>
+);
 
 export class AppWrapper extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <App />
-        </BrowserRouter>
-      </Provider>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }
