@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../store';
 import { CardProps } from '../components/Card';
-import { extractCurrentPageIndex } from '../CustomHooks/useCallAPI';
 import characters from '../assets/characters.json';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
@@ -71,6 +70,15 @@ const search = createSlice({
     },
   },
 });
+
+const extractCurrentPageIndex = (url: string | null): number => {
+  if (!url) return 1;
+  let page = '1';
+  let tpm = url.match(/page=\d+/);
+  if (tpm && tpm[0]) tpm = tpm[0].match(/\d+/);
+  if (tpm && tpm[0]) page = tpm[0];
+  return parseInt(page);
+};
 
 export const callApiAndSetSearchResult =
   (url: string): AppThunk =>
