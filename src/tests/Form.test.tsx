@@ -4,6 +4,7 @@ import { describe, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Form from '../components/Form';
 import Users from '../pages/Users';
+import { renderWithRedux } from './util';
 
 describe('Form', () => {
   it('birth date requirements', async () => {
@@ -25,7 +26,7 @@ describe('Form', () => {
   });
 
   it('First name requirements', async () => {
-    render(<Users />);
+    renderWithRedux(<Users />);
     expect(screen.queryByText(/should start with a capital letter.*/i)).toBeNull();
 
     const nameInput = screen.getByPlaceholderText(/First Name/i);

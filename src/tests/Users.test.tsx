@@ -1,13 +1,14 @@
-import { fireEvent, render, act } from '@testing-library/react';
+import { fireEvent, act } from '@testing-library/react';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
 import UsersPage from '../pages/Users';
+import { renderWithRedux } from './util';
 
 describe('Form', () => {
   it('error message of ivalid first name', async () => {
-    const { getByPlaceholderText, getByRole, getByText } = render(<UsersPage></UsersPage>);
+    const { getByPlaceholderText, getByRole, getByText } = renderWithRedux(<UsersPage />);
 
     await act(async () => {
       await userEvent.type(getByPlaceholderText(/first name/i), 'olivia');
@@ -21,7 +22,7 @@ describe('Form', () => {
   });
 
   it('card color error handling and selection', async () => {
-    const { queryByText, getByRole, getByText } = render(<UsersPage></UsersPage>);
+    const { queryByText, getByRole, getByText } = renderWithRedux(<UsersPage />);
 
     await act(async () => {
       await userEvent.click(getByRole('button'));
@@ -43,9 +44,8 @@ describe('Form', () => {
 
   it('card creation (female), succes message', async () => {
     global.URL.createObjectURL = vi.fn();
-    const { queryByText, getByRole, getByText, getByPlaceholderText, getByLabelText } = render(
-      <UsersPage></UsersPage>
-    );
+    const { queryByText, getByRole, getByText, getByPlaceholderText, getByLabelText } =
+      renderWithRedux(<UsersPage />);
 
     await act(async () => {
       await userEvent.type(getByPlaceholderText(/first name/i), 'Jane');
