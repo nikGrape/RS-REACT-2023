@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import axios from 'axios';
 
 import Main from '../pages/Main';

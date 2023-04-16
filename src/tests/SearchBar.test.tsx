@@ -1,6 +1,6 @@
 import React from 'react';
-import { describe, it, vi, assert } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it } from 'vitest';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
@@ -9,7 +9,7 @@ import { renderWithRedux } from './util';
 
 describe('SearchBar', () => {
   it('search bar hint', async () => {
-    const setSearch = vi.fn();
+    // const setSearch = vi.fn();
     renderWithRedux(<SearchBar />);
 
     const hintButton = screen.getByText('?');
@@ -29,7 +29,7 @@ describe('SearchBar', () => {
   });
 
   it('search bar submit on valid search', async () => {
-    const setSearch = vi.fn();
+    // const setSearch = vi.fn();
     renderWithRedux(<SearchBar />);
 
     const submit = screen.getByTestId('search-submit');
@@ -44,7 +44,7 @@ describe('SearchBar', () => {
   });
 
   it('search bar submit with empty search', async () => {
-    const setSearch = vi.fn();
+    // const setSearch = vi.fn();
     renderWithRedux(<SearchBar />);
 
     const submit = screen.getByTestId('search-submit');
@@ -71,14 +71,14 @@ describe('SearchBar', () => {
   });
 
   it('search bar retrieves value from localStorage', () => {
-    const setSearch = vi.fn();
+    // const setSearch = vi.fn();
     renderWithRedux(<SearchBar />);
 
     // expect(screen.getByRole('textbox')).toHaveValue('rick female');
   });
 
   it('search bar saves value to localStorage', async () => {
-    const setSearch = vi.fn();
+    // const setSearch = vi.fn();
     renderWithRedux(<SearchBar />);
 
     const submit = screen.getByTestId('search-submit');
