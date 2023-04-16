@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
-import { selectSearch, setUrl, setError } from '../features/search';
+import { selectSearch, setError, fetchData, BASE_URL } from '../redux/searchSlice';
+import { AppThunkDispatch } from 'store';
 
 const Main = () => {
-  const { cards, loading, error, totalNumberOfPages, currentPageIndex, prevPageUrl, nextPageUrl } =
+  const { cards, status, error, totalNumberOfPages, currentPageIndex, prevPageUrl, nextPageUrl } =
     useSelector(selectSearch);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppThunkDispatch>();
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchData(BASE_URL));
+    }
+  }, [status, dispatch]);
 
   return (
     <div className="page" id="main-page">
       <SearchBar />
-      {loading ? (
+      {status === 'pending' ? (
         <Loading />
       ) : (
         <div className="cards">
@@ -23,12 +30,12 @@ const Main = () => {
           ))}
         </div>
       )}
-      {!loading && (
+      {status !== 'pending' && (
         <div className="prev-next-buttons">
           <button
             type="button"
             onClick={() => {
-              if (prevPageUrl) dispatch(setUrl(prevPageUrl));
+              if (prevPageUrl) dispatch(fetchData(prevPageUrl));
             }}
           >
             prev
@@ -37,7 +44,7 @@ const Main = () => {
           <button
             type="button"
             onClick={() => {
-              if (nextPageUrl) dispatch(setUrl(nextPageUrl));
+              if (nextPageUrl) dispatch(fetchData(nextPageUrl));
             }}
           >
             next

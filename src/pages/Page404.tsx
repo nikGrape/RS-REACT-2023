@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setShowHeader } from '../features/app';
+import { setShowHeader } from '../redux/appSlice';
 
 const Page404 = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { selectApp } from '../features/app';
+import { selectApp } from '../redux/appSlice';
 
 const Header = () => {
   const [path, setPath] = useState('Main');

@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import users from './features/users';
-import search from './features/search';
-import app from './features/app';
+import users from './redux/usersSlice';
+import search from './redux/searchSlice';
+import app from './redux/appSlice';
 
 const store = configureStore({
   reducer: {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import FormHook, { User } from '../components/Form';
 import UserCard from '../components/UserCard';
-import { selectUsers, addUser as addUserToGlobalStore } from '../features/users';
+import { selectUsers, addUser as addUserToGlobalStore } from '../redux/usersSlice';
 
 const Users = () => {
   const [success, setSuccess] = useState<boolean>(false);

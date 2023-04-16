@@ -10,7 +10,7 @@
     "test": "vitest run --coverage",
     "testwatch": "vitest",
     "linter": "eslint src/**/*.tsx --ignore-pattern node_modules/",
-    "lint": "eslint src/**/*.tsx --ignore-pattern node_modules/"
+    "lint": "eslint src/ --ignore-pattern node_modules/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",

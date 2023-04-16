@@ -5,10 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import { Hint } from './Hint';
-import { selectSearch, setUrl, setSearchText, callApiAndSetSearchResult } from '../features/search';
+import { selectSearch, setSearchText, fetchData, BASE_URL } from '../redux/searchSlice';
 import { AppThunkDispatch } from '../store';
-
-const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 interface Input {
   search: string;
@@ -36,8 +34,6 @@ enum species {
   'disease',
 }
 
-export const LS_SEARCH_BAR_VALUE_KEY = 'search_value#o20sd3e2ds4h5yuzz';
-
 const SearchBar = () => {
   const [showHint, setShowHint] = useState(false);
   const { searchText } = useSelector(selectSearch);
@@ -53,8 +49,8 @@ const SearchBar = () => {
 
   const onSubmit: SubmitHandler<Input> = (data) => {
     const url = BASE_URL + validate(data.search);
-    dispatch(setUrl(url));
-    dispatch(callApiAndSetSearchResult(url));
+    dispatch(setSearchText(data.search));
+    dispatch(fetchData(url));
   };
 
   const validate = (value: string) => {
@@ -77,7 +73,6 @@ const SearchBar = () => {
     if (res.includes('error')) return 'error';
     let query = res.join('&');
     if (query.length > 0) query = '?' + query;
-    dispatch(setSearchText(value));
     return query;
   };
 
