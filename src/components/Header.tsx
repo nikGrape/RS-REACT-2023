@@ -1,34 +1,34 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { selectApp } from '../redux/appSlice';
 
 const Header = () => {
-  const [path, setPath] = useState('Main');
-  const [header, setHeader] = useState('Rick and Morty');
   const location = useLocation();
   const { showHeader } = useSelector(selectApp);
 
-  useEffect(() => {
-    const pathname = location.pathname;
+  const getPathAndHeader = useCallback((pathname: string) => {
     switch (pathname) {
       case '/users':
-        setPath('Users');
-        setHeader('Sign Up a new user');
-        break;
+        return ['Users', 'Sign Up a new user'];
       case '/about':
-        setPath('About Us');
-        setHeader('This is what it is all about');
-        break;
+        return ['About Us', 'This is what it is all about'];
       case '/':
-        setPath('Main');
-        setHeader('Rick and Morty');
-        break;
+        return ['Main', 'Rick and Morty'];
       default:
-        setPath('#');
-        setHeader('Page not found');
+        return ['#', 'Page not found'];
     }
-  }, [location]);
+  }, []);
+
+  const pathAndHeader = getPathAndHeader(location.pathname);
+  const [path, setPath] = useState(pathAndHeader[0]);
+  const [header, setHeader] = useState(pathAndHeader[1]);
+
+  useEffect(() => {
+    const pathAndHeader = getPathAndHeader(location.pathname);
+    setPath(pathAndHeader[0]);
+    setHeader(pathAndHeader[1]);
+  }, [location, getPathAndHeader]);
 
   return (
     <Fragment>

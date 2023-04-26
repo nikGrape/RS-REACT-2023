@@ -576,6 +576,7 @@ input[type='checkbox']:checked::before {
 .fa-check,
 .fa-user-plus {
   margin: 0px 20px 0px 30px;
+  width: 30px;
 }
 .fa-magnifying-glass {
   height: 50%;

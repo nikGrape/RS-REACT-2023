@@ -1,7 +1,7 @@
 import * as React from 'react';
 import express from 'express';
 import cors from 'cors';
-import { renderToString } from 'react-dom/server';
+import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 
@@ -15,35 +15,37 @@ app.use(cors());
 app.use(express.static('dist'));
 
 app.get('*', async (req, res) => {
-  const markup = renderToString(
-    <StaticRouter location={req.url}>
-      <Provider store={store}>
-        <App></App>
-      </Provider>
-    </StaticRouter>
-  );
-
   const preloadedState = store.getState();
 
-  res.send(
-    `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>RS</title>
-            <script src="/bundle.js" defer></script>
-            <link href="/main.css" rel="stylesheet">
-            <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <script>
-              window.__PRELOADED_STATE__= ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
-            </script>
-          </head>
-          <body>
-            <div id="root">${markup}</div>
-          </body>
-        </html>
-      `
+  const { pipe } = renderToPipeableStream(
+    <html>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/main.css"></link>
+        <title>Rick and Morty</title>
+      </head>
+      <body>
+        <div id="root">
+          <StaticRouter location={req.url}>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </StaticRouter>
+        </div>
+      </body>
+    </html>,
+    {
+      bootstrapScripts: ['/bundle.js'],
+      bootstrapScriptContent: `window.__PRELOADED_STATE__= ${JSON.stringify(preloadedState).replace(
+        /</g,
+        '\\u003c'
+      )}`,
+      onShellReady() {
+        res.setHeader('content-type', 'text/html');
+        pipe(res);
+      },
+    }
   );
 });
 
