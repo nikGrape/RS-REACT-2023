@@ -1,5 +1,5 @@
 import React from 'react';
-import { beforeEach, describe, it, vi } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import axios from 'axios';
 
@@ -36,7 +36,14 @@ describe('Main', () => {
   it('calls api on next/prev page button click', async () => {
     const get = axios.get as jest.MockedFunction<typeof axios.get>;
     get.mockReset();
-    get.mockImplementationOnce(() => Promise.resolve({ data: { ...characters } }));
+    get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: {
+          ...characters,
+          info: { ...characters.info, prev: 'https://rickandmortyapi.com/api/character?page=1' },
+        },
+      })
+    );
     renderWithRedux(<Main />);
 
     const submit = screen.getByTestId('search-submit');
@@ -63,8 +70,8 @@ describe('Main', () => {
       await userEvent.click(prev);
     });
 
-    // expect(get).toHaveBeenCalledTimes(3);
-    // expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=3`, { signal: controller.signal });
+    expect(get).toHaveBeenCalledTimes(3);
+    expect(get).toHaveBeenCalledWith(`${BASE_URL}?page=1`, { signal: controller.signal });
   });
 
   it('show error on 404 response', async () => {
