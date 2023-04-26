@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { CardProps } from '../components/Card';
+import characters from '../assets/characters.json';
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
@@ -20,13 +21,13 @@ interface SearchStateType {
 const initialState: SearchStateType = {
   searchText: '',
   url: BASE_URL,
-  status: 'idle',
+  status: 'success',
   error: null,
-  cards: [],
-  totalNumberOfPages: 0,
+  cards: characters.results,
+  totalNumberOfPages: characters.info.pages,
   currentPageIndex: 1,
-  prevPageUrl: null,
-  nextPageUrl: null,
+  prevPageUrl: characters.info.prev,
+  nextPageUrl: characters.info.next,
 };
 
 export const fetchData = createAsyncThunk('search/fetchData', async (url: string, { signal }) => {

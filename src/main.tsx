@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { AppWrapper } from './App';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.hydrateRoot(
+  document.getElementById('root') as HTMLElement,
   <React.StrictMode>
     <AppWrapper />
   </React.StrictMode>

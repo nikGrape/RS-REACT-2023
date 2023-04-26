@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { Hint } from '../components/Hint';
 import { Loading } from '../components/Loading';
-import { selectSearch, setError, fetchData, BASE_URL } from '../redux/searchSlice';
+import { selectSearch, setError, fetchData } from '../redux/searchSlice';
 import { AppThunkDispatch } from 'store';
 
 const Main = () => {
   const { cards, status, error, totalNumberOfPages, currentPageIndex, prevPageUrl, nextPageUrl } =
     useSelector(selectSearch);
   const dispatch = useDispatch<AppThunkDispatch>();
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchData(BASE_URL));
-    }
-  }, [status, dispatch]);
 
   return (
     <div className="page" id="main-page">

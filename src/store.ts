@@ -3,12 +3,18 @@ import users from './redux/usersSlice';
 import search from './redux/searchSlice';
 import app from './redux/appSlice';
 
+declare const window: Window &
+  typeof globalThis & {
+    __PRELOADED_STATE__: object;
+  };
+
 const store = configureStore({
   reducer: {
     users,
     search,
     app,
   },
+  preloadedState: __isBrowser__ ? window.__PRELOADED_STATE__ : {},
 });
 
 export type AppDispatch = typeof store.dispatch;

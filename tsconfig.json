@@ -3,7 +3,7 @@
     "useDefineForClassFields": true,
     "allowJs": false,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "target": "esnext",
     "lib": ["dom", "esnext", "dom.iterable"],
     "jsx": "react",

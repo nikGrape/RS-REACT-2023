@@ -577,6 +577,14 @@ input[type='checkbox']:checked::before {
 .fa-user-plus {
   margin: 0px 20px 0px 30px;
 }
+.fa-magnifying-glass {
+  height: 50%;
+}
+.fa-sun,
+.fa-moon {
+  height: 40px;
+  width: 40px;
+}
 .input-group {
   display: flex;
   align-items: space-around;
