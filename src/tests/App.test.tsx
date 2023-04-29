@@ -8,34 +8,16 @@ import { App, AppWrapper } from '../App';
 import characters from '../assets/characters.json';
 import { renderWithRedux } from './util';
 
-import { defineConfig } from 'vitest/config';
-
-export default defineConfig({
-  test: {
-    include: ['**/*.test.tsx'],
-    globals: true,
-  },
-});
-
 vi.mock('axios');
 const get = axios.get as jest.MockedFunction<typeof axios.get>;
 get.mockImplementation(() => Promise.resolve({ data: { ...characters } }));
-
-import react from '@vitejs/plugin-react-swc';
-
-defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/setupTests.ts'],
-    coverage: {
-      provider: 'istanbul', // or 'c8'
-    },
-  },
-});
+vi.stubGlobal('__isBrowser__', false);
 
 describe('App', () => {
+  beforeAll(() => {
+    vi.stubGlobal('__isBrowser__', false);
+  });
+
   it('Renders page desc', () => {
     renderWithRedux(<AppWrapper />);
     expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent('Rick and Morty');

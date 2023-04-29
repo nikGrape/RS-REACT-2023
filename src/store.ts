@@ -14,7 +14,7 @@ const store = configureStore({
     search,
     app,
   },
-  // preloadedState: __isBrowser__ ? window.__PRELOADED_STATE__ : {},
+  preloadedState: __isBrowser__ ? window.__PRELOADED_STATE__ : {},
 });
 
 export type AppDispatch = typeof store.dispatch;

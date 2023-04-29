@@ -1,0 +1,335 @@
+{
+  "/Users/nik/Desktop/RS-REACT-2023/src/App.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/App.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/global.d.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/global.d.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/main.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/main.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/react-app-env.d.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/react-app-env.d.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/routes.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/routes.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/setupTests.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/setupTests.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/store.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/store.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/vite-env.d.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/vite-env.d.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/Card.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/Card.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/Form.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/Form.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/Header.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/Header.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/Hint.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/Hint.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/Loading.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/Loading.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/MiniCard.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/MiniCard.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/ModalCard.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/ModalCard.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/SearchBar.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/SearchBar.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/ThemeSwitch.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/ThemeSwitch.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/components/UserCard.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/components/UserCard.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/pages/About.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/pages/About.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/pages/Main.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/pages/Main.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/pages/Page404.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/pages/Page404.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/pages/Users.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/pages/Users.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/redux/appSlice.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/redux/appSlice.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/redux/searchSlice.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/redux/searchSlice.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/redux/usersSlice.ts": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/redux/usersSlice.ts",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/server/server.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/server/server.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/App.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/App.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Form.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Form.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Header.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Header.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Hint.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Hint.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Main.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Main.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/MiniCard.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/MiniCard.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/ModalCard.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/ModalCard.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/SearchBar.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/SearchBar.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Theme.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Theme.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/Users.test.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/Users.test.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  },
+  "/Users/nik/Desktop/RS-REACT-2023/src/tests/util.tsx": {
+    "path": "/Users/nik/Desktop/RS-REACT-2023/src/tests/util.tsx",
+    "statementMap": {},
+    "fnMap": {},
+    "branchMap": {},
+    "s": {},
+    "f": {},
+    "b": {}
+  }
+}

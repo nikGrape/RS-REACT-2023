@@ -20,5 +20,6 @@
     "resolveJsonModule": true
   },
   "include": ["src", "./src/**/*", "styled.d.ts", ".eslinrc.cjs", "vite.config.ts"],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
