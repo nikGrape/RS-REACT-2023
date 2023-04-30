@@ -9,6 +9,7 @@ lerna-debug.log*
 commit.txt
 
 node_modules
+instrumented
 .nyc_output
 dist
 dist-ssr
