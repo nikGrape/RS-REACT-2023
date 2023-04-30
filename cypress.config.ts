@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable-file @typescript-eslint/no-unused-vars */
 import { defineConfig } from 'cypress';
 import coverage from '@cypress/code-coverage/task';
 
