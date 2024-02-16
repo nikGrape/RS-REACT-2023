@@ -2,10 +2,12 @@
 RS School boot camp for React. March 2023
 <hr/>
 
+1. Deploy: [link](https://64faad6ad66b7e3073035e44--admirable-blancmange-ad7e59.netlify.app/)
 2. **Screenshot**:
 <img width="1388" alt="Screen Shot 2023-04-06 at 5 24 36 PM" src="https://user-images.githubusercontent.com/48928594/230516477-d0a14751-3755-4f59-b280-9d202f00492e.png">
 
-
+## For a reviewer
+### for more information about the work done check pull requests
 
 Commands for review:</br>
 run eslint: <code>npm run linter</code></br>
