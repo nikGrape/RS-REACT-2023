@@ -2,6 +2,11 @@
 RS School boot camp for React. March 2023
 <hr/>
 
+2. **Screenshot**:
+<img width="1388" alt="Screen Shot 2023-04-06 at 5 24 36 PM" src="https://user-images.githubusercontent.com/48928594/230516477-d0a14751-3755-4f59-b280-9d202f00492e.png">
+
+
+
 Commands for review:</br>
 run eslint: <code>npm run linter</code></br>
 run tests: <code>npm run test</code>
