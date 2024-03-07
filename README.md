@@ -2,6 +2,26 @@
 RS School boot camp for React. March 2023
 <hr/>
 
+1. **Task** : [link](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module05) 
+
+
+2. **Screenshot**:
+<img width="1388" alt="Screen Shot 2023-04-06 at 5 24 36 PM" src="https://user-images.githubusercontent.com/48928594/230516477-d0a14751-3755-4f59-b280-9d202f00492e.png">
+
+
+3. **Deploy**: [link](https://64faad6ad66b7e3073035e44--admirable-blancmange-ad7e59.netlify.app/)
+
+4. **Done**: 16 April 2023 12:25, Deadline: 16 April 2023 16:59
+
+5. **Self Evaluation**:
+
+- [+] Eslint does not show any errors or warnings.
+- [+] All the functionality work:
+- [+] No presence of the code smells.
+- [+] No unnecessary, redundant or obvious comments.
+- [+] The project is written with Typescript.
+- [+] there are not direct DOM manipulations
+- [+] Test coverage for the whole app is 91.59%:
 Commands for review:</br>
 run eslint: <code>npm run linter</code></br>
 run tests: <code>npm run test</code>
